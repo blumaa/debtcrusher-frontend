@@ -19,8 +19,8 @@ const ProjectCard = props => {
         <Card.Content extra>
           <Image
             floated="right"
-            size="mini"
-            src="https://react.semantic-ui.com/images/avatar/large/matthew.png"
+            size="small"
+            src={"http://localhost:8080/" + proj.User.userImage}
           />
           <Card.Header>{proj.name}</Card.Header>
           <Card.Description>

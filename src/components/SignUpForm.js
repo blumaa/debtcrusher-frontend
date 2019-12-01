@@ -13,19 +13,6 @@ class SignUpForm extends Component {
     passwordConfirm: ""
   };
 
-  handleSubmit = async () => {
-    const user = this.state;
-    console.log("user", user);
-    const reqObj = {
-      headers: { "Content-Type": "application/json" },
-      method: "POST",
-      body: JSON.stringify(user)
-    };
-    const resp = await fetch("http://localhost:8080/api/signup", reqObj);
-    const data = await resp.json();
-    console.log(data);
-    this.props.history.push('/')
-  };
 
   handleChange = e => {
     const name = e.target.name;
@@ -53,7 +40,7 @@ class SignUpForm extends Component {
     return (
       <>
         <Form
-          onSubmit={()=>this.props.signUpUser(this.state, this.props.history)}
+          onSubmit={(e)=>this.props.signUpUser(e,this.state, this.props.history)}
           onChange={this.handleChange}
           className="ui main"
         >
@@ -69,7 +56,7 @@ class SignUpForm extends Component {
             label="Display Name"
             type="text"
             name="displayName"
-            value={this.state.displayNname}
+            value={this.state.displayName}
             id="display-name-field"
             required
           />
@@ -79,6 +66,13 @@ class SignUpForm extends Component {
             id="birth-date-field"
             value={this.state.birthDate}
             type="text"
+            required
+          />
+          <Form.Input
+            label="User Image"
+            name="userImage"
+            id="user-image"
+            type="file"
             required
           />
           <Form.TextArea
@@ -113,7 +107,7 @@ class SignUpForm extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    signUpUser: (user, history) => dispatch(signUpUser(user, history))
+    signUpUser: (e,user, history) => dispatch(signUpUser(e,user, history))
   }
 }
 

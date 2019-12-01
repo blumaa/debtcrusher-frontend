@@ -13,12 +13,12 @@ const MyProfile = props => {
       <Grid.Row stretched>
         <Grid.Column floated="right">
           <Segment>
-            <Header as="h2">
               <Image
-                src="https://react.semantic-ui.com/images/avatar/large/matthew.png"
-                size="mini"
+                src={"http://localhost:8080/" + props.currentUser.userImage}
+                size="small"
                 floated="left"
               />
+            <Header as="h2">
               {props.currentUser.displayName}
             </Header>
             <p>Bio: {props.currentUser.bio}</p>

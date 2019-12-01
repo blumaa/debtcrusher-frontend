@@ -1,3 +1,5 @@
+
+
 export const GET_USERS = 'GET_USERS'
 
 export const getUsers = users => ({type: GET_USERS, users})
@@ -53,18 +55,33 @@ export const postSignUpUser = user => ({
   user
 });
 
-export const signUpUser = (user, history) => {
+export const signUpUser = (e, user, history) => {
+  // console.log(e.target)
+  // console.dir(e.target[3].files[0])
+  // console.log(user)
+
+  var data = new FormData()
+  data.append('userImage', e.target[3].files[0])
+  data.append('username', user.username)
+  data.append('password', user.password)
+  data.append('displayName', user.displayName)
+  data.append('bio', user.bio)
+  data.append('birthDate', user.birthDate)
+  console.log(data)
+  console.dir(data)
+
+  /* headers: { "Content-Type": "application/json" }, JSON.stringify(user)*/
   return async dispatch => {
     try {
       const reqObj = {
-        headers: { "Content-Type": "application/json" },
         method: "POST",
-        body: JSON.stringify(user)
+        body: data
       };
       const resp = await fetch("http://localhost:8080/api/users/signup", reqObj);
-      const data = await resp.json();
-      dispatch(postSignUpUser(data.user));
-      localStorage.setItem("token", data.token);
+      const newData = await resp.json();
+      console.log(newData)
+      dispatch(postSignUpUser(newData.user));
+      localStorage.setItem("token", newData.token);
       history.push("/exploreProjects");
     } catch (error) {
       console.error("Error fetching users:", error);
