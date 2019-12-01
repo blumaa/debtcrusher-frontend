@@ -18,7 +18,7 @@ class ProjectDetailsButton extends Component {
 
   render() {
     const { open, dimmer } = this.state;
-
+    // console.log(this.props.proj)
     return (
       <>
         <Button onClick={this.show("blurring")}>Project Details</Button>
@@ -28,8 +28,8 @@ class ProjectDetailsButton extends Component {
             {this.props.proj.name}
             <Image
               floated="right"
-              size="mini"
-              src="https://react.semantic-ui.com/images/avatar/large/matthew.png"
+              size="small"
+              src={"http://localhost:8080/" + this.props.proj.User.userImage}
             />
           </Modal.Header>
           <Modal.Content>
