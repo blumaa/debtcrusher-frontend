@@ -8,13 +8,13 @@ import {
 import ProjectCard from './ProjectCard'
 
 const ProfileShow = props => {
-  console.log(props.match.params.id)
-  console.log(props.users)
+  // console.log(props.match.params.id)
+  // console.log(props.users)
   const user = props.users.find(user=> {
     console.log(user)
     return user.id === parseInt(props.match.params.id)
   })
-  console.log(user)
+  // console.log(user)
   const project = props.projects.find(proj=> proj.id === user.project.id)
   const projBackers = props.backers.filter(backer => {
     // console.log(backer);
@@ -24,16 +24,18 @@ const ProfileShow = props => {
   const reducer = (accumulator, currentValue) => accumulator + currentValue;
   const total = backerMoneyArr.reduce(reducer, 0);
 
+  // console.log(user)
 
   return (
     <Grid centered columns={2} padded divided className="ui main">
       <Grid.Column>
-        <Header as="h2">
+
           <Image
-            src="https://react.semantic-ui.com/images/avatar/large/matthew.png"
-            size="mini"
+            src={"http://localhost:8080/" + user.userImage}
+            size="small"
             floated="left"
           />
+        <Header as="h2">
         {user.displayName}
         </Header>
         <p>Bio: {user.bio}</p>

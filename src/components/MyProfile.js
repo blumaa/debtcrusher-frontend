@@ -9,7 +9,11 @@ const MyProfile = props => {
   // console.log('donation pool', props.currentUser.donationPool)
 
   return (
-    <Grid columns="equal" padded className="ui main">
+    <>
+    <Header as="h2" className="ui main">
+      My Profile
+    </Header>
+    <Grid columns="equal" padded>
       <Grid.Row stretched>
         <Grid.Column floated="right">
           <Segment>
@@ -61,6 +65,7 @@ const MyProfile = props => {
         </Grid.Column>
       </Grid.Row>
     </Grid>
+    </>
   );
 };
 

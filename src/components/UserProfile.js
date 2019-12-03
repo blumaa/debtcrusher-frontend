@@ -11,12 +11,17 @@ import {
 
 const MyProfile = props => {
   return (
+    <>
+    <Header as="h2" className="ui main">
+      My Profile
+    </Header>
+
     <Grid centered columns={2} padded divided className="ui main">
       <Grid.Column>
         <Header as="h2">
           <Image
-            src="https://react.semantic-ui.com/images/avatar/large/matthew.png"
-            size="mini"
+            src={"http://localhost:8080/" + props.currentUser.userImage}
+            size="small"
             floated="left"
           />
           {props.currentUser.displayName}
@@ -34,6 +39,7 @@ const MyProfile = props => {
         </p>
       </Grid.Column>
     </Grid>
+    </>
   );
 };
 

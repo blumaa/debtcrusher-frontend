@@ -49,12 +49,18 @@ class FundButton extends Component {
             <Form onSubmit={this.handleSubmit}>
               <Form.Field>
                 <label>
-                  When you donate money to {this.props.project.User ? this.props.project.User.displayName : ""}
+                  When you donate money to{" "}
+                  {this.props.project.User
+                    ? this.props.project.User.displayName
+                    : ""}
                   student's loan, 90% of that money will be committed to
                 </label>
                 <p>
                   How much would you like to give
-                  {this.props.User ? this.props.project.User.displayName : ""} per month?
+                  {this.props.User
+                    ? this.props.project.User.displayName
+                    : ""}{" "}
+                  per month?
                 </p>
                 Amount:
                 <div>
@@ -64,7 +70,7 @@ class FundButton extends Component {
                     value="10"
                     onChange={this.handleChange}
                   />
-                <label>$10</label>
+                  <label>$10</label>
                 </div>
                 <div>
                   <input
@@ -73,7 +79,7 @@ class FundButton extends Component {
                     value="20"
                     onChange={this.handleChange}
                   />
-                <label>$20</label>
+                  <label>$20</label>
                 </div>
                 <div>
                   <input
@@ -82,7 +88,7 @@ class FundButton extends Component {
                     value="30"
                     onChange={this.handleChange}
                   />
-                <label>$30</label>
+                  <label>$30</label>
                 </div>
               </Form.Field>
               <Button
@@ -92,6 +98,7 @@ class FundButton extends Component {
                 labelPosition="right"
                 content="Submit"
               />
+
             </Form>
           </Modal.Content>
         </Modal>

@@ -42,7 +42,7 @@ export const loginUser = (user, history) => {
       dispatch(setCurrentUser(data.user));
       // console.log(data);
       localStorage.setItem("token", data.token);
-      history.push("/exploreProjects");
+      history.push("/welcome");
     } catch (error) {
       console.error("Error fetching users:", error);
     }
@@ -82,7 +82,7 @@ export const signUpUser = (e, user, history) => {
       console.log(newData)
       dispatch(postSignUpUser(newData.user));
       localStorage.setItem("token", newData.token);
-      history.push("/exploreProjects");
+      history.push("/welcome");
     } catch (error) {
       console.error("Error fetching users:", error);
     }

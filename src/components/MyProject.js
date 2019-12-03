@@ -2,10 +2,15 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { fetchProjects } from "../store/actions/projects";
-import { Button, Card, Image, Icon, Grid } from "semantic-ui-react";
+import { Button, Card, Image, Icon, Grid, Header } from "semantic-ui-react";
 import ProjectBackersList from "./ProjectBackersList";
 
 class MyProject extends Component {
+  connectToStripe = (e) => {
+    console.log(this.props.history)
+    window.open(`https://connect.stripe.com/express/oauth/authorize?redirect_uri=localhost:8080/myProfile&client_id=ca_32D88BD1qLklliziD7gYQvctJIhWBSQ7&state={STATE_VALUE}}`)
+  }
+
   render() {
     // console.log(this.props.currentUser);
     // console.log(this.props.projects)
@@ -29,37 +34,55 @@ class MyProject extends Component {
       // console.log(projBackers);
 
       return (
-          <Grid columns="equal" padded divided className="ui main">
-            <Grid.Row stretched>
-              <Grid.Column>
-                <Card>
-                  <Card.Content extra>
-                    <Image
-                      floated="right"
-                      size="small"
-                      src={"http://localhost:8080/" + this.props.currentUser.userImage}
-                    />
-                    <Card.Header>{userProject.name}</Card.Header>
-                    <Card.Description>
-                      This student needs ${userProject.goal} to get an education
-                    </Card.Description>
-                  </Card.Content>
-                  <Card.Content extra>
-                    <Icon name="money" />
-                    Total amount of backing money: ${total}
-                  </Card.Content>
-                </Card>
-              </Grid.Column>
-              <Grid.Column>
-                <ProjectBackersList project={userProject} />
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
+        <>
+        <Header as="h1" className="ui main">
+          My Project
+        </Header>
+        <Grid columns="equal" padded divided className="ui main">
+          <Grid.Row stretched>
+            <Button
+              onClick={this.connectToStripe}
+            >
+              Connect to Stripe
+            </Button>
+          </Grid.Row>
+          <Grid.Row stretched>
+            <Grid.Column>
+              <Card>
+                <Card.Content extra>
+                  <Image
+                    floated="right"
+                    size="small"
+                    src={
+                      "http://localhost:8080/" +
+                      this.props.currentUser.userImage
+                    }
+                  />
+                  <Card.Header>{userProject.name}</Card.Header>
+                  <Card.Description>
+                    This student needs ${userProject.goal} to get an education
+                  </Card.Description>
+                </Card.Content>
+                <Card.Content extra>
+                  <Icon name="money" />
+                  Total amount of backing money: ${total}
+                </Card.Content>
+              </Card>
+            </Grid.Column>
+            <Grid.Column>
+              <ProjectBackersList project={userProject} />
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+        </>
       );
     } else {
       return (
         <>
-          <Button as={Link} to="/createProject" className="ui main">
+        <Header as="h2" className="ui main">
+          You don't have a project. Would you like to create one?
+        </Header>
+          <Button as={Link} to="/createProject" >
             Get Help With a Loan
           </Button>
         </>
