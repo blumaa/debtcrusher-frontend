@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Grid, Header } from "semantic-ui-react";
+import { Grid, Header, Container } from "semantic-ui-react";
 import ProjectCard from "./ProjectCard";
 
 const ExploreProjects = props => {
@@ -16,12 +16,12 @@ const ExploreProjects = props => {
     return <ProjectCard key={proj.id} proj={proj} total={total} />;
   });
   return (
-    <div className="ui main">
+    <Container style={{ marginTop: '6.7em' }}>
       <Grid columns={3}>
-        <Header>Help a student!</Header>
+        <Header as="h2">Help a student!</Header>
         <Grid.Row>{renderedProjects}</Grid.Row>
       </Grid>
-    </div>
+    </Container>
   );
 };
 

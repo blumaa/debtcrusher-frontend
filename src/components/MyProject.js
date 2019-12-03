@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { fetchProjects } from "../store/actions/projects";
-import { Button, Card, Image, Icon, Grid, Header } from "semantic-ui-react";
+import { Button, Card, Image, Icon, Grid, Header, Container } from "semantic-ui-react";
 import ProjectBackersList from "./ProjectBackersList";
 
 class MyProject extends Component {
@@ -34,11 +34,12 @@ class MyProject extends Component {
       // console.log(projBackers);
 
       return (
-        <>
-        <Header as="h1" className="ui main">
+        <Container style={{ marginTop: '6.1em' }}>
+
+        <Header as="h2">
           My Project
         </Header>
-        <Grid columns="equal" padded divided className="ui main">
+        <Grid columns="equal" padded divided >
           <Grid.Row stretched>
             <Button
               onClick={this.connectToStripe}
@@ -74,18 +75,19 @@ class MyProject extends Component {
             </Grid.Column>
           </Grid.Row>
         </Grid>
-        </>
+      </Container>
       );
     } else {
       return (
-        <>
+        <Container style={{ marginTop: '6.1em' }}>
+
         <Header as="h2" className="ui main">
           You don't have a project. Would you like to create one?
         </Header>
           <Button as={Link} to="/createProject" >
             Get Help With a Loan
           </Button>
-        </>
+        </Container>
       );
     }
   }

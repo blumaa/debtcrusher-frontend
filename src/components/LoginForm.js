@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Form } from "semantic-ui-react";
+import { Button, Form, Container, Header } from "semantic-ui-react";
 import { loginUser } from "../store/actions/users";
 import { connect } from "react-redux";
 
@@ -18,12 +18,13 @@ class LogInForm extends Component {
   };
 
   render() {
-    
+
     return (
+      <Container style={{ marginTop: '6.1em' }}>
+      <Header as="h2">Login</Header>
       <Form
         onSubmit={() => this.props.loginUser(this.state, this.props.history)}
         onChange={this.handleChange}
-        className="ui main"
       >
         <Form.Input
           label="Email"
@@ -41,6 +42,7 @@ class LogInForm extends Component {
         />
         <Button type="submit">Submit</Button>
       </Form>
+    </Container>
     );
   }
 }

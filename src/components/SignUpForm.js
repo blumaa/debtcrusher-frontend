@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Form } from "semantic-ui-react";
+import { Button, Form, Container, Header } from "semantic-ui-react";
 import { connect } from 'react-redux'
 import { signUpUser } from '../store/actions/users'
 
@@ -38,11 +38,11 @@ class SignUpForm extends Component {
         : "Passwords MUST match";
 
     return (
-      <>
+      <Container style={{ marginTop: '6.1em' }}>
+        <Header as="h2">Sign Up for debtCrusher!</Header>
         <Form
           onSubmit={(e)=>this.props.signUpUser(e,this.state, this.props.history)}
           onChange={this.handleChange}
-          className="ui main"
         >
           <Form.Input
             label="Email"
@@ -100,7 +100,7 @@ class SignUpForm extends Component {
           />
           <Button type="submit">Submit</Button>
         </Form>
-      </>
+      </Container>
     );
   }
 }

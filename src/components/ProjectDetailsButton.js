@@ -27,9 +27,9 @@ class ProjectDetailsButton extends Component {
           <Modal.Header>
             {this.props.proj.name}
             <Image
-              floated="right"
-              size="mini"
-              src="https://react.semantic-ui.com/images/avatar/large/matthew.png"
+              src={"http://localhost:8080/" + this.props.proj.User.userImage}
+              size="small"
+              floated="left"
             />
           </Modal.Header>
           <Modal.Content>

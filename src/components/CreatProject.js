@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {postProject} from '../store/actions/projects'
-import {Form, Button} from 'semantic-ui-react'
+import {Form, Button, Header, Container} from 'semantic-ui-react'
 
 class CreateProject extends Component {
   state = {
@@ -34,7 +34,9 @@ class CreateProject extends Component {
   render() {
     // console.log('this b the user', this.props.currentUser)
     return (
-      <Form onSubmit={this.handleSubmit} className="ui main">
+      <Container style={{ marginTop: '6.1em' }}>
+        <Header as="h2">Do you need help with a loan? Create a project!</Header>
+      <Form onSubmit={this.handleSubmit} >
         <Form.Field>
           <label>Title of Project / Loan (Why do you need help?)</label>
           <input
@@ -67,6 +69,7 @@ class CreateProject extends Component {
         </Form.Field>
         <Button type="submit">Submit</Button>
       </Form>
+    </Container>
     )
   }
 }
