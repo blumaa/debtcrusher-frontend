@@ -11,11 +11,13 @@ const projectReducer = (
       };
     case "POST_PROJECT":
       return {
+        ...state,
         projects: [...state.projects, action.project],
         requesting: true
       };
     case "UPDATE_PROJECT_AMOUNT":
       return {
+        ...state,
         projects: state.projects.map(proj =>
           proj.id === action.project.id ? action.project : proj
         )

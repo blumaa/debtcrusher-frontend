@@ -1,62 +1,78 @@
-import React from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
-import {
-  Grid,
-  Image,
-  Header,
-  Container
-} from "semantic-ui-react";
-import ProjectCard from './ProjectCard'
+import { Grid, Image, Header, Container } from "semantic-ui-react";
+import ProjectCard from "./ProjectCard";
+import { fetchUsers } from "../store/actions/users";
 
-const ProfileShow = props => {
-  // console.log(props.match.params.id)
-  // console.log(props.users)
-  const user = props.users.find(user=> {
-    console.log(user)
-    return user.id === parseInt(props.match.params.id)
-  })
-  // console.log(user)
-  const project = props.projects.find(proj=> proj.id === user.project.id)
-  const projBackers = props.backers.filter(backer => {
-    // console.log(backer);
-    return backer.primaryProjectId == project.id;
-  });
-  const backerMoneyArr = projBackers.map(backer => backer.amount);
-  const reducer = (accumulator, currentValue) => accumulator + currentValue;
-  const total = backerMoneyArr.reduce(reducer, 0);
 
-  // console.log(user)
+class ProfileShow extends Component {
 
-  return (
-    <Container style={{ marginTop: '6.1em' }}>
+  componentDidMount = () => {
+    this.props.fetchUsers();
+  }
 
-    <Grid centered columns={2} padded divided className="ui main">
-      <Grid.Column>
+  renderUserInfo(user){
+    return(
+      <>
+      <Image
+        src={"http://localhost:8080/" + user.userImage}
+        size="small"
+        floated="left"
+      />
+      <Header as="h2">{user.displayName}</Header>
+      <p>Bio: {user.bio}</p>
+      <p>Birth Date: {user.birthDate}</p>
+      <p>
+        Email: <a href="{this.props.currentUser.username}">{user.username}</a>
+      </p>
+    </>
+    )
 
-          <Image
-            src={"http://localhost:8080/" + user.userImage}
-            size="small"
-            floated="left"
-          />
-        <Header as="h2">
-        {user.displayName}
-        </Header>
-        <p>Bio: {user.bio}</p>
-        <p>Birth Date: {user.birthDate}</p>
-        <p>
-          Email:{" "}
-          <a href="{props.currentUser.username}">
-            {user.username}
-          </a>
-        </p>
-      </Grid.Column>
-      <Grid.Column>
-        <ProjectCard proj={project} total={total}/>
-      </Grid.Column>
-    </Grid>
-  </Container>
-  );
+  }
+
+  renderProjectCard(project){
+    const projBackers = this.props.backers.filter(backer => {
+      // console.log(backer);
+      return backer.primaryProjectId == project.id;
+    });
+    const backerMoneyArr = projBackers.map(backer => backer.amount);
+    const reducer = (accumulator, currentValue) => accumulator + currentValue;
+    const total = backerMoneyArr.reduce(reducer, 0);
+
+    return(
+      <ProjectCard proj={project} total={total} />
+    )
+  }
+
+  render() {
+  // console.log(this.props.match.params.id)
+    const user = this.props.users.find(user => {
+      return user.id === parseInt(this.props.match.params.id);
+    });
+    // console.log(user)
+    const project = this.props.projects.find(proj => proj.id === user.project.id);
+
+    // console.log(user)
+
+    return (
+      <Container style={{ marginTop: "6.1em" }}>
+        <Grid centered columns={2} padded divided className="ui main">
+          <Grid.Column>
+            { user ?
+              this.renderUserInfo(user)
+            :
+            <h3> Loadin </h3>
+            }
+
+          </Grid.Column>
+          <Grid.Column>
+            { project ? this.renderProjectCard(project) : <h3>loading</h3>}
+          </Grid.Column>
+        </Grid>
+      </Container>
+    );
 };
+}
 
 const mapStateToProps = state => {
   return {
@@ -66,4 +82,11 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(ProfileShow);
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchUsers: () => dispatch(fetchUsers())
+  };
+};
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileShow);

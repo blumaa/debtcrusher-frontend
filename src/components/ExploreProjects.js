@@ -12,7 +12,6 @@ const ExploreProjects = props => {
     const backerMoneyArr = projBackers.map(backer => backer.amount);
     const reducer = (accumulator, currentValue) => accumulator + currentValue;
     const total = backerMoneyArr.reduce(reducer, 0);
-
     return <ProjectCard key={proj.id} proj={proj} total={total} />;
   });
   return (

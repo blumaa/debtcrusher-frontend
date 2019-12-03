@@ -19,7 +19,7 @@ class SignUpForm extends Component {
     this.setState({
       [name]: e.target.value
     });
-    console.log(this.state);
+    
   };
 
   validatePassword = () => {

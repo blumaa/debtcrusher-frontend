@@ -5,14 +5,8 @@ import { clearCurrentUser } from "../store/actions/users";
 import mainLogo from "../images/dbCrush.png";
 import {
   Container,
-  Divider,
-  Dropdown,
-  Grid,
-  Header,
   Image,
-  List,
   Menu,
-  Segment
 } from "semantic-ui-react";
 
 const NavBar = props => {

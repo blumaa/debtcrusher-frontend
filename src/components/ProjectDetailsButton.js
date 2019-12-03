@@ -4,7 +4,8 @@ import {
   Image,
   Modal,
   Container,
-  Icon
+  Icon,
+  Progress
 } from "semantic-ui-react";
 import FundButton from "./FundButton";
 
@@ -36,9 +37,7 @@ class ProjectDetailsButton extends Component {
             <Container>
               <p>
                 Project Created By:
-                {this.props.proj.User
-                  ? this.props.proj.User.displayName
-                  : null}
+                {this.props.proj.User ? this.props.proj.User.displayName : null}
               </p>
               <p>
                 This student needs ${this.props.proj.goal} to get an education
@@ -47,10 +46,13 @@ class ProjectDetailsButton extends Component {
                 <Icon name="money" />
                 Total amount of backing money: ${this.props.total}
               </p>
-
-                <div className="ui two buttons">
-                  <FundButton project={this.props.proj} />
-                </div>
+                <Progress
+                  percent={(this.props.total / this.props.proj.goal) * 100}
+                  indicating
+                />
+              <div className="ui two buttons">
+                <FundButton project={this.props.proj} />
+              </div>
             </Container>
           </Modal.Content>
         </Modal>

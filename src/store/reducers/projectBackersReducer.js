@@ -5,6 +5,7 @@ const projectBackerReducer = (
   switch (action.type) {
     case "GET_BACKERS":
       return {
+        ...state,
         backers: action.backers,
         requesting: true
       };

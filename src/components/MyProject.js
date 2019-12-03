@@ -2,10 +2,13 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { fetchProjects } from "../store/actions/projects";
-import { Button, Card, Image, Icon, Grid, Header, Container } from "semantic-ui-react";
+import { Button, Card, Image, Icon, Grid, Header, Container, Progress } from "semantic-ui-react";
 import ProjectBackersList from "./ProjectBackersList";
 
 class MyProject extends Component {
+  state = { percent: 0 }
+
+
   connectToStripe = (e) => {
     console.log(this.props.history)
     window.open(`https://connect.stripe.com/express/oauth/authorize?redirect_uri=localhost:8080/myProfile&client_id=ca_32D88BD1qLklliziD7gYQvctJIhWBSQ7&state={STATE_VALUE}}`)
@@ -67,6 +70,8 @@ class MyProject extends Component {
                 <Card.Content extra>
                   <Icon name="money" />
                   Total amount of backing money: ${total}
+                  <Progress percent={ (total/userProject.goal) * 100 } indicating />
+
                 </Card.Content>
               </Card>
             </Grid.Column>

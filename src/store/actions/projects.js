@@ -6,7 +6,7 @@ export const POST_PROJECT = 'POST_PROJECT'
 export const triggerPostProject = project => ({type: POST_PROJECT, project})
 
 export const postProject = project => {
-  // console.log('this is the dispatch action project', project)
+  console.log('this is the dispatch action project', project)
   return async dispatch => {
     try {
       const reqObj = {
@@ -18,7 +18,6 @@ export const postProject = project => {
       }
       const response = await fetch('http://localhost:8080/api/projects', reqObj)
       const json = await response.json()
-      // console.log(json)
       dispatch(triggerPostProject(json))
     } catch (error) {
       console.error('Error fetching user:', error)
@@ -39,7 +38,6 @@ export const fetchProjects = () => {
     try {
       const response = await fetch('http://localhost:8080/api/projects')
       const json = await response.json()
-      // console.log(json)
       dispatch(getProjects(json))
     } catch (error) {
       console.error('Error fetching user:', error)

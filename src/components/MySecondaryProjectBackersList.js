@@ -9,7 +9,7 @@ const MySecondaryProjectBackersList = props => {
   let secondaryBackers;
   if (props.secondaryBackers) {
     const filteredBackers = props.secondaryBackers.filter(backer=> backer.secondaryBackerId === props.currentUser.id)
-    console.log('filtered backers', filteredBackers)
+    // console.log('filtered backers', filteredBackers)
 
     secondaryBackers = filteredBackers.map(backer => {
       // console.log(backer)

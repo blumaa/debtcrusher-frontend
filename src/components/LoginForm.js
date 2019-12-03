@@ -1,7 +1,16 @@
 import React, { Component } from "react";
-import { Button, Form, Container, Header } from "semantic-ui-react";
+import {
+  Button,
+  Form,
+  Grid,
+  Header,
+  Image,
+  Message,
+  Segment
+} from "semantic-ui-react";
 import { loginUser } from "../store/actions/users";
 import { connect } from "react-redux";
+import mainLogo from "../images/dbCrush.png";
 
 class LogInForm extends Component {
   state = {
@@ -18,31 +27,56 @@ class LogInForm extends Component {
   };
 
   render() {
-
     return (
-      <Container style={{ marginTop: '6.1em' }}>
-      <Header as="h2">Login</Header>
-      <Form
-        onSubmit={() => this.props.loginUser(this.state, this.props.history)}
-        onChange={this.handleChange}
+      <Grid
+        textAlign="center"
+        style={{ height: "100vh" }}
+        verticalAlign="middle"
       >
-        <Form.Input
-          label="Email"
-          type="email"
-          name="username"
-          id="email-field"
-          required
-        />
-        <Form.Input
-          label="Enter Password"
-          name="password"
-          type="password"
-          id="password-field"
-          required
-        />
-        <Button type="submit">Submit</Button>
-      </Form>
-    </Container>
+        <Grid.Column style={{ maxWidth: 450 }}>
+          <Image src={mainLogo} alt="debtCrusher" size="large" />
+          <Header as="h2" color="blue" textAlign="center">
+            Log-in to your account
+          </Header>
+          <Form
+            size="large"
+            onSubmit={() =>
+              this.props.loginUser(this.state, this.props.history)
+            }
+            onChange={this.handleChange}
+          >
+            <Segment stacked>
+              <Form.Input
+                fluid
+                icon="user"
+                iconPosition="left"
+                placeholder="E-mail address"
+                type="email"
+                name="username"
+                id="email-field"
+                required
+              />
+              <Form.Input
+                fluid
+                icon="lock"
+                iconPosition="left"
+                placeholder="Password"
+                name="password"
+                type="password"
+                id="password-field"
+                required
+              />
+
+            <Button color="violet" fluid size="large">
+                Login
+              </Button>
+            </Segment>
+          </Form>
+          <Message>
+            New to us? <a href="/sign_up">Sign Up</a>
+          </Message>
+        </Grid.Column>
+      </Grid>
     );
   }
 }
@@ -53,7 +87,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(LogInForm);
+export default connect(null, mapDispatchToProps)(LogInForm);
