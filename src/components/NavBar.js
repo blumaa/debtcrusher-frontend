@@ -2,7 +2,8 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import { clearCurrentUser } from "../store/actions/users";
-import mainLogo from "../images/dbCrush.png";
+import squareLogo from "../images/debtCrusherSquare.png";
+import mainLogo from "../images/debtCrusherWide.png";
 import {
   Container,
   Image,
@@ -12,7 +13,6 @@ import {
 const NavBar = props => {
   // console.log('navbar current user', props.currentUser)
   return (
-    <div>
       <Menu fixed="top" inverted>
         <Container>
           {props.currentUser ? (
@@ -54,8 +54,7 @@ const NavBar = props => {
             </>
           )}
         </Container>
-        <Container>
-          <Menu.Item as="a" header position="right">
+          <Menu.Item header position="right">
             <Image
               as={NavLink}
               to={"/welcome"}
@@ -64,9 +63,7 @@ const NavBar = props => {
               size="small"
             />
           </Menu.Item>
-        </Container>
       </Menu>
-    </div>
   );
 };
 

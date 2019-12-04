@@ -79,7 +79,7 @@ export const signUpUser = (e, user, history) => {
       };
       const resp = await fetch("http://localhost:8080/api/users/signup", reqObj);
       const newData = await resp.json();
-      console.log(newData)
+      // console.log(newData)
       dispatch(postSignUpUser(newData.user));
       localStorage.setItem("token", newData.token);
       history.push("/welcome");

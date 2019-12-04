@@ -65,7 +65,7 @@ export const postProjectBacker = (backerId, projectId, amount, userId) => {
         donObj
       );
       const user = await res2.json();
-      console.log(user);
+      // console.log(user);
       dispatch(donationPoolUpdate(user));
 
 

@@ -13,7 +13,7 @@ class FundButton extends Component {
   close = () => this.setState({ open: false });
 
   handleSubmit = () => {
-    console.log(this.props);
+    // console.log(this.props);
     this.props.backProject(
       this.props.user.currentUser.id,
       this.props.project.id,

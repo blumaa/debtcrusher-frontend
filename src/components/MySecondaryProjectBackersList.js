@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 
 
 const MySecondaryProjectBackersList = props => {
-  console.log(props.secondaryBackers)
+  // console.log(props.secondaryBackers)
   let secondaryBackers;
   if (props.secondaryBackers) {
     const filteredBackers = props.secondaryBackers.filter(backer=> backer.secondaryBackerId === props.currentUser.id)
