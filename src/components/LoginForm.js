@@ -10,7 +10,7 @@ import {
 } from "semantic-ui-react";
 import { loginUser } from "../store/actions/users";
 import { connect } from "react-redux";
-import mainLogo from "../images/debtCrusherWide.png";
+import mainLogo from "../images/debtCrusherPS.png";
 
 class LogInForm extends Component {
   state = {

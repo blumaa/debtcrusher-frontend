@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Header } from "semantic-ui-react";
+import { Card, Header, Container, Grid } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
@@ -30,10 +30,16 @@ const ProjectBackersList = props => {
   }
 
   return (
-    <>
-      <Header>People who are helping you with your loan:</Header>
-      {props.project ? userBackers : "no backers found"}
-    </>
+
+      <Container>
+        <Grid columns="equal" padded divided>
+          <Grid.Row>
+            <Header>People who are helping you with your loan:</Header>
+            {props.project ? userBackers : "No one is helping you yet!"}
+          </Grid.Row>
+        </Grid>
+      </Container>
+
   );
 };
 

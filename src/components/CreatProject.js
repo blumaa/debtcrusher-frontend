@@ -34,7 +34,7 @@ class CreateProject extends Component {
   render() {
     // console.log('this b the user', this.props.currentUser)
     return (
-      <Container style={{ marginTop: '6.1em' }}>
+      <Container className="ui main">
         <Header as="h2">Do you need help with a loan? Create a project!</Header>
       <Form onSubmit={this.handleSubmit} >
         <Form.Field>

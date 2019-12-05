@@ -51,7 +51,7 @@ class ProjectDetailsButton extends Component {
                   indicating
                 />
               <div className="ui two buttons">
-                <FundButton project={this.props.proj} />
+                {this.props.proj.funded === true ? <Button className="ui olive item">THIS PROJECT HAS BEEN FUNDED!</Button> : <FundButton project={this.props.proj} /> }
               </div>
             </Container>
           </Modal.Content>

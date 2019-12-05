@@ -61,7 +61,7 @@ export const postProjectBacker = (backerId, projectId, amount, userId) => {
       };
 
       const res2 = await fetch(
-        "http://localhost:8080/api/users/" + userId,
+        "http://localhost:8080/api/users/" + userId + "/donationPool",
         donObj
       );
       const user = await res2.json();

@@ -39,6 +39,14 @@ const userReducer = (state = { users: [], requesting: false }, action) => {
           user.id === action.user.id ? action.user : user
         )
       };
+    case "UPDATE_USER":
+      return {
+        ...state,
+        currentUser: action.updatedUser,
+        users: state.users.map(user =>
+          user.id === action.updatedUser.id ? action.updatedUser : user
+        )
+      };
     default:
       return state;
   }

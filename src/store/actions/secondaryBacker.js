@@ -63,8 +63,8 @@ export const createSecondaryBacker = ({amount, userId, projectId}) => {
           donObj
         );
         const user = await res2.json();
-        console.log('this is the donation pool patch');
-        console.log(user);
+        // console.log('this is the donation pool patch');
+        // console.log(user);
         dispatch(donationPoolSubtract(user));
 
 

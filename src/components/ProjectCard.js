@@ -1,15 +1,16 @@
 import React from "react";
-import { Card, Icon, Image, Grid, Progress } from "semantic-ui-react";
+import { Card, Icon, Image, Grid, Progress, Button } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import FundButton from "./FundButton";
 import ProjectDetailsButton from "./ProjectDetailsButton";
 
 const ProjectCard = props => {
   const { proj, total } = props;
+  // console.log(proj)
   return (
     <Grid.Column>
       <Card>
-        <Card.Content>
+        <Card.Content className="ui content">
           Project Created By:
           <Card.Content as={Link} to={{pathname: "/users/" + proj.User.id, state:{proj}}} >
             {proj.User ? proj.User.displayName : null}
@@ -34,7 +35,7 @@ const ProjectCard = props => {
         <Card.Content extra>
           <div className="ui two buttons">
             <ProjectDetailsButton proj={proj} total={total} />
-            <FundButton project={proj} />
+            {proj.funded === true ? <Button className="ui olive item">THIS PROJECT HAS BEEN FUNDED!</Button> : <FundButton project={proj} /> }
           </div>
         </Card.Content>
       </Card>

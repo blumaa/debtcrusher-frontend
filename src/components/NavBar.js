@@ -2,8 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import { clearCurrentUser } from "../store/actions/users";
-import squareLogo from "../images/debtCrusherSquare.png";
-import mainLogo from "../images/debtCrusherWide.png";
+import mainLogo from "../images/debtCrusherPS.png";
 import {
   Container,
   Image,
@@ -41,6 +40,13 @@ const NavBar = props => {
                 className="blue item"
                 >
                 Help a Student!
+              </Menu.Item>
+              <Menu.Item
+                as={NavLink}
+                to={"/welcome"}
+                className="grey item"
+                >
+                Info
               </Menu.Item>
             </>
           ) : (

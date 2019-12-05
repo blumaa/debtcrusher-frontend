@@ -1,4 +1,39 @@
 
+/* Edit User */
+export const UPDATE_USER = 'UPDATE_USER'
+
+export const updateUser = updatedUser => ({type: UPDATE_USER, updatedUser})
+
+export const editUser = (e, user) => {
+  console.log(e.target[2])
+  console.log(user)
+
+    var data = new FormData()
+    data.append('userImage', e.target[2].files[0])
+    data.append('displayName', user.displayName)
+    data.append('bio', user.bio)
+    data.append('birthDate', user.birthDate)
+    console.log(data)
+    console.dir(data)
+
+    return async dispatch => {
+      try {
+        const reqObj = {
+          method: "PATCH",
+          body: data
+        };
+        const resp = await fetch('http://localhost:8080/api/users/' + user.id, reqObj)
+        const newData = await resp.json();
+        console.log(newData)
+        dispatch(updateUser(newData));
+        // history.push("/myProfile");
+      } catch (error) {
+        console.error("Error fetching users:", error);
+      }
+    };
+
+}
+
 
 export const GET_USERS = 'GET_USERS'
 

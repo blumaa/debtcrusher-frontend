@@ -19,7 +19,7 @@ class SignUpForm extends Component {
     this.setState({
       [name]: e.target.value
     });
-    
+
   };
 
   validatePassword = () => {
@@ -31,6 +31,21 @@ class SignUpForm extends Component {
     return this.state.password === this.state.passwordConfirm;
   };
 
+  connectToStripe = e => {
+    console.log(this.props.history);
+    window.open(
+      `https://connect.stripe.com/express/oauth/authorize?redirect_uri=localhost:3000/myProfile&client_id=ca_GHuiRPzrsA38adHU0qaRWViSQtTd0xxK&state=foovbhjgjhg`
+    );
+  };
+
+  // connectToStripe = e => {
+  //   console.log(this.props.history);
+  //   window.open(
+  //     `https://connect.stripe.com/express/oauth/authorize?redirect_uri=localhost:3000/sign_up&client_id=ca_32D88BD1qLklliziD7gYQvctJIhWBSQ7&state={STATE_VALUE}}`
+  //   );
+  // };
+
+
   render() {
     const passwordsMatch =
       this.state.password === this.state.passwordConfirm
@@ -40,6 +55,8 @@ class SignUpForm extends Component {
     return (
       <Container style={{ marginTop: '6.1em' }}>
         <Header as="h2">Sign Up for debtCrusher!</Header>
+        {/* <Button onClick={this.connectToStripe}>Connect to Stripe</Button>*/} 
+
         <Form
           onSubmit={(e)=>this.props.signUpUser(e,this.state, this.props.history)}
           onChange={this.handleChange}

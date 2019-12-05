@@ -15,8 +15,8 @@ const ExploreProjects = props => {
     return <ProjectCard key={proj.id} proj={proj} total={total} />;
   });
   return (
-    <Container style={{ marginTop: '6.7em' }}>
-      <Grid columns={3}>
+    <Container className="ui explore">
+      <Grid columns={3} >
         <Header as="h2">Help a student!</Header>
         <Grid.Row>{renderedProjects}</Grid.Row>
       </Grid>

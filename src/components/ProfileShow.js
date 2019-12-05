@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Grid, Image, Header, Container } from "semantic-ui-react";
+import { Grid, Image, Header, Container, Segment } from "semantic-ui-react";
 import ProjectCard from "./ProjectCard";
 import { fetchUsers } from "../store/actions/users";
 
@@ -55,15 +55,17 @@ class ProfileShow extends Component {
     // console.log(user)
 
     return (
-      <Container style={{ marginTop: "6.1em" }}>
-        <Grid centered columns={2} padded divided className="ui main">
+      <Container className="ui main">
+        <Header as="h2">My Profile</Header>
+        <Grid columns="equal" padded>
           <Grid.Column>
+            <Segment>
             { user ?
               this.renderUserInfo(user)
             :
             <h3> Loadin </h3>
             }
-
+</Segment>
           </Grid.Column>
           <Grid.Column>
             { project ? this.renderProjectCard(project) : <h3>loading</h3>}

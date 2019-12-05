@@ -4,19 +4,28 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 class MyProjectBackersList extends Component {
-  myBackers(filteredBackers){
+  myBackers(filteredBackers, allProjects, allUsers){
     return filteredBackers.map(backer => {
-      console.log(backer)
-    const proj = this.props.projects.find(
+      // console.log(backer)
+    const proj = allProjects.find(
       proj => proj.id === backer.primaryProjectId
     );
-    console.log(proj)
-    const user = this.props.users.find(user => user.id === proj.userId);
-    console.log(user)
+
+    // if (!proj){
+    //   console.log('FOOBAR  BAZ')
+    //   return (
+    //     <Card key={backer.id}>
+    //       <Card.Content>
+    //        invalid card
+    //       </Card.Content>
+    //     </Card>
+    //   );
+    // }
+    const user = allUsers.find(user => user.id === proj.userId);
     return (
       <Card key={backer.id}>
         <Card.Content>
-          You are backing the project <strong>{proj.name}</strong> created by
+          You are backing the project <strong>{proj ? proj.name : ""}</strong> created by
           <Link as={Link} to={"/users/" + user.id}>
             {user.displayName}
           </Link>
@@ -27,14 +36,28 @@ class MyProjectBackersList extends Component {
   });
 }
 
+fetchSuccesful(){
+  const filteredBackers = this.props.allBackers.filter(
+    backer => backer.backerId === this.props.currentUser.id
+  );
+  const allProjects = this.props.projects
+  const allUsers = this.props.users
+  return filteredBackers.length > 0 && allProjects.length > 0 && allUsers.length > 0
+}
+
   render() {
+
     const filteredBackers = this.props.allBackers.filter(
       backer => backer.backerId === this.props.currentUser.id
     );
-    console.log(filteredBackers);
+
+    const allProjects = this.props.projects
+    const allUsers = this.props.users
+
+    // console.log(filteredBackers);
     return (
       <>
-        {filteredBackers.length > 0 ? this.myBackers(filteredBackers) : (<Button as={ Link} to={'/exploreProjects'}>Help a student!</Button>) }
+        { this.fetchSuccesful() ? this.myBackers(filteredBackers, allProjects, allUsers) : (<Button as={ Link} to={'/exploreProjects'} className="ui green item">Help a student!</Button>) }
       </>
     );
   }

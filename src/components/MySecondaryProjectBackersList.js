@@ -14,6 +14,16 @@ const MySecondaryProjectBackersList = props => {
     secondaryBackers = filteredBackers.map(backer => {
       // console.log(backer)
       const proj = props.projects.find(proj => proj.id === backer.secondaryProjectId);
+      if (!proj){
+        console.log('asdfasf')
+        return (
+          <Card key={backer.id}>
+            <Card.Content>
+             invalid card
+            </Card.Content>
+          </Card>
+        );
+      }
       const user = props.users.find(user=> user.id === proj.userId)
       // console.log(proj)
         return (
