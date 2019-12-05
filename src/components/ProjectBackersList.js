@@ -28,14 +28,16 @@ const ProjectBackersList = props => {
       return user;
     });
   }
-
+  console.log(props.project)
   return (
 
       <Container>
         <Grid columns="equal" padded divided>
           <Grid.Row>
             <Header>People who are helping you with your loan:</Header>
-            {props.project ? userBackers : "No one is helping you yet!"}
+          </Grid.Row>
+          <Grid.Row>
+            {props.project.projectBackers.length > 0 ? userBackers : <Header as="h4"> No one is helping you yet! </Header>}
           </Grid.Row>
         </Grid>
       </Container>

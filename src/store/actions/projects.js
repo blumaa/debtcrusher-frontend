@@ -16,7 +16,7 @@ export const postProject = project => {
         },
         body: JSON.stringify({project})
       }
-      const response = await fetch('http://localhost:8080/api/projects', reqObj)
+      const response = await fetch('https://debt-crusher.herokuapp.com/api/projects', reqObj)
       const json = await response.json()
       dispatch(triggerPostProject(json))
     } catch (error) {
@@ -36,7 +36,7 @@ export const fetchProjects = () => {
   // console.log('this is the dispatch action project', project)
   return async dispatch => {
     try {
-      const response = await fetch('http://localhost:8080/api/projects')
+      const response = await fetch('https://debt-crusher.herokuapp.com/api/projects')
       const json = await response.json()
       dispatch(getProjects(json))
     } catch (error) {

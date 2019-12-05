@@ -97,6 +97,8 @@ class MyProject extends Component {
                 You don't have a Student Loan Project. Would you like to create
                 one?
               </Header>
+            </Grid.Row>
+            <Grid.Row>
               <Button as={Link} to="/createProject">
                 Get Help With a Loan
               </Button>

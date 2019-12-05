@@ -15,7 +15,7 @@ class ProfileShow extends Component {
     return(
       <>
       <Image
-        src={"http://localhost:8080/" + user.userImage}
+        src={"https://debt-crusher.herokuapp.com/" + user.userImage}
         size="small"
         floated="left"
       />

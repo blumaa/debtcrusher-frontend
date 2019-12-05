@@ -20,7 +20,7 @@ const ProjectCard = props => {
           <Image
             floated="right"
             size="small"
-            src={"http://localhost:8080/" + proj.User.userImage}
+            src={"https://debt-crusher.herokuapp.com/" + proj.User.userImage}
           />
           <Card.Header>{proj.name}</Card.Header>
           <Card.Description>

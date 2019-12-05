@@ -22,7 +22,7 @@ export const editUser = (e, user) => {
           method: "PATCH",
           body: data
         };
-        const resp = await fetch('http://localhost:8080/api/users/' + user.id, reqObj)
+        const resp = await fetch('https://debt-crusher.herokuapp.com/api/users/' + user.id, reqObj)
         const newData = await resp.json();
         console.log(newData)
         dispatch(updateUser(newData));
@@ -43,7 +43,7 @@ export const fetchUsers = () => {
   // console.log('this is the dispatch action project', project)
   return async dispatch => {
     try {
-      const response = await fetch('http://localhost:8080/api/users')
+      const response = await fetch('https://debt-crusher.herokuapp.com/api/users')
       const json = await response.json()
       // console.log('*************************************',json)
       dispatch(getUsers(json))
@@ -72,7 +72,7 @@ export const loginUser = (user, history) => {
         body: payload
       };
       // console.log(user);
-      const resp = await fetch("http://localhost:8080/api/users/login", reqObj);
+      const resp = await fetch("https://debt-crusher.herokuapp.com/api/users/login", reqObj);
       const data = await resp.json();
       dispatch(setCurrentUser(data.user));
       // console.log(data);
@@ -112,7 +112,7 @@ export const signUpUser = (e, user, history) => {
         method: "POST",
         body: data
       };
-      const resp = await fetch("http://localhost:8080/api/users/signup", reqObj);
+      const resp = await fetch("https://debt-crusher.herokuapp.com/api/users/signup", reqObj);
       const newData = await resp.json();
       // console.log(newData)
       dispatch(postSignUpUser(newData.user));
@@ -139,7 +139,7 @@ export const authenticateUser = () => {
           "Authorization" : `${localStorage.getItem("token")}`
         }
       };
-      const resp = await fetch("http://localhost:8080/api/users/authenticateUser", reqObj);
+      const resp = await fetch("https://debt-crusher.herokuapp.com/api/users/authenticateUser", reqObj);
       // console.log(resp)
       const data = await resp.json();
       // console.log(data)
