@@ -62,7 +62,7 @@ class MyProject extends Component {
                       floated="right"
                       size="small"
                       src={
-                        "http://localhost:8080/" +
+                        "https://debt-crusher.herokuapp.com/" +
                         this.props.currentUser.userImage
                       }
                     />
