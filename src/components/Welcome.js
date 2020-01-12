@@ -7,8 +7,11 @@ const Welcome = props => {
   return (
     <Container className="ui main">
       <Header as="h1" >
-        Welcome to debtCrusher, {props.currentUser.displayName}!
+        Welcome to debtCrusher, {props.currentUser ? props.currentUser.displayName : "User"}!
       </Header>
+      <Segment>
+        If you are a beta tester or just checking out the site, feel free to sign up and play around with the site. Everything is still in development so none of the payment forms are real. But everything works!
+      </Segment>
       <Segment>
         <Header as="h3">
           Here's how debtCrusher works:

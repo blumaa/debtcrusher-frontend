@@ -6,6 +6,9 @@ import Calendar from 'react-input-calendar'
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 class SignUpForm extends Component {
 
@@ -47,14 +50,9 @@ class SignUpForm extends Component {
     );
   };
 
-  // connectToStripe = e => {
-  //   console.log(this.props.history);
-  //   window.open(
-  //     `https://connect.stripe.com/express/oauth/authorize?redirect_uri=localhost:3000/sign_up&client_id=ca_32D88BD1qLklliziD7gYQvctJIhWBSQ7&state={STATE_VALUE}}`
-  //   );
-  // };
-
   render() {
+    console.log(this.matchPasswords)
+
     const passwordsMatch =
       this.state.password === this.state.passwordConfirm
         ? "Passwords match"
@@ -66,8 +64,16 @@ class SignUpForm extends Component {
         {/* <Button onClick={this.connectToStripe}>Connect to Stripe</Button> */}
 
         <Form
-          onSubmit={e =>
+          onSubmit={e => {
+            if (this.state.password === this.state.passwordConfirm) {
             this.props.signUpUser(e, this.state, this.props.history)
+          } else {
+            toast.error("Error: passwords don't match !", {
+              position: toast.POSITION.TOP_LEFT
+            });
+            console.log('error: passwords must be the same')
+          }
+            }
           }
           onChange={this.handleChange}
         >
@@ -131,7 +137,8 @@ class SignUpForm extends Component {
             value={this.state.passwordConfirm}
             required
           />
-          <Button type="submit">Submit</Button>
+        {this.matchPasswords ? <Button type="submit">Submit</Button> : <Button type="submit" disabled>Submit</Button> }
+        <ToastContainer />
         </Form>
       </Container>
     );

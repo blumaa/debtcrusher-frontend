@@ -36,6 +36,7 @@ class App extends Component {
       <div className="App">
         <Route path="/" render={(props) => <NavBar {...props} currentUser={this.props.currentUser} />} />
         <Redirect to="/welcome" />
+        <Route exact path="/welcome" component={Welcome} />
 
         <Switch>
           <Route exact path="/sign_up" component={SignUpForm} />
@@ -53,7 +54,6 @@ class App extends Component {
 
             <Route exact path="/users/:id" component={ProfileShow} />
 
-            <Route exact path="/welcome" component={Welcome} />
             </>
           ) : (
             <Route exact path="/login" component={LogInForm} />
