@@ -103,7 +103,7 @@ class _CardForm extends Component {
       .then(({ paymentMethod, error }) => {
         console.log("Received Stripe PaymentMethod:", paymentMethod);
         console.log("Received Stripe error:", error);
-        fetch("http://localhost:8080/api/stripe/checkout", {
+        fetch("https://debt-crusher-backend.herokuapp.com/api/stripe/checkout", {
           method: "POST",
           headers: {
             "Content-Type": "application/json"

@@ -20,7 +20,7 @@ const MyProfile = props => {
       <Grid.Column>
         <Header as="h2">
           <Image
-            src={"http://localhost:8080/" + props.currentUser.userImage}
+            src={"https://debt-crusher-backend.herokuapp.com/" + props.currentUser.userImage}
             size="small"
             floated="left"
           />

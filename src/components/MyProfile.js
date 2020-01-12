@@ -47,7 +47,7 @@ class MyProfile extends Component {
               <Segment>
                 <Image
                   src={
-                    "http://localhost:8080/" + this.props.currentUser.userImage
+                    "https://debt-crusher-backend.herokuapp.com/" + this.props.currentUser.userImage
                   }
                   size="small"
                   floated="left"

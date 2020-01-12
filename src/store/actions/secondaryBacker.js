@@ -9,7 +9,7 @@ export const fetchSecondaryBackers = () => {
   // console.log('this is the dispatch action project', project)
   return async dispatch => {
     try {
-      const response = await fetch("http://localhost:8080/api/secondaryBackers");
+      const response = await fetch("https://debt-crusher-backend.herokuapp.com/api/secondaryBackers");
       const json = await response.json();
       // console.log(json)
       dispatch(getSecondaryBackers(json));
@@ -40,7 +40,7 @@ export const createSecondaryBacker = ({amount, userId, projectId}) => {
           projectId
         })
       }
-      const response = await fetch('http://localhost:8080/api/secondaryBackers', reqObj)
+      const response = await fetch('https://debt-crusher-backend.herokuapp.com/api/secondaryBackers', reqObj)
       const json = await response.json()
       // console.log(json)
       dispatch(postSecondaryBacker(json))
@@ -59,7 +59,7 @@ export const createSecondaryBacker = ({amount, userId, projectId}) => {
         };
 
         const res2 = await fetch(
-          "http://localhost:8080/api/users/" + userId + "/donationSubtract",
+          "https://debt-crusher-backend.herokuapp.com/api/users/" + userId + "/donationSubtract",
           donObj
         );
         const user = await res2.json();
@@ -80,7 +80,7 @@ export const createSecondaryBacker = ({amount, userId, projectId}) => {
         })
       };
       const res = await fetch(
-        "http://localhost:8080/api/projects/" + projectId,
+        "https://debt-crusher-backend.herokuapp.com/api/projects/" + projectId,
         reqObj2
       );
       const project = await res.json();

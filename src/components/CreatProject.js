@@ -52,7 +52,7 @@ class CreateProject extends Component {
       })
     }
 
-    fetch('http://localhost:8080/api/stripe/token', reqObj)
+    fetch('https://debt-crusher-backend.herokuapp.com/api/stripe/token', reqObj)
     .then(res => res.json())
     .then(data => {
       console.log(data)

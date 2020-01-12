@@ -64,7 +64,7 @@ class _CardForm extends Component {
       this.props.stripe
         .createToken()
         .then(payload => {
-          fetch('http://localhost:8080/api/stripe/checkout', {
+          fetch('https://debt-crusher-backend.herokuapp.com/api/stripe/checkout', {
             method: 'POST',
             headers: {
               'Content-Type' : 'application/json'

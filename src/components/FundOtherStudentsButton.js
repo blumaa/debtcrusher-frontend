@@ -25,7 +25,7 @@ class FundOtherStudentsButton extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    fetch("http://localhost:8080/api/stripe/secondaryCheckout", {
+    fetch("https://debt-crusher-backend.herokuapp.com//api/stripe/secondaryCheckout", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -103,7 +103,7 @@ class FundOtherStudentsButton extends Component {
                 <Image
                   floated="right"
                   size="small"
-                  src={"http://localhost:8080/" + proj.User.userImage}
+                  src={"https://debt-crusher-backend.herokuapp.com/" + proj.User.userImage}
                 />
                 <Card.Header>{proj.name}</Card.Header>
                 <Card.Description>

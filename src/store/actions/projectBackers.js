@@ -10,7 +10,7 @@ export const fetchBackers = () => {
   // console.log('this is the dispatch action project', project)
   return async dispatch => {
     try {
-      const response = await fetch("http://localhost:8080/api/projectBackers");
+      const response = await fetch("https://debt-crusher-backend.herokuapp.com/api/projectBackers");
       const json = await response.json();
       // console.log(json)
       dispatch(getBackers(json));
@@ -54,7 +54,7 @@ export const postProjectBacker = (backerId, projectId, amount, userId, stripeId,
       // };
       //
       // const respo = await fetch(
-      //   "http://localhost:8080/api/stripe/checkout/",
+      //   "https://debt-crusher-backend.herokuapp.com/api/stripe/checkout/",
       //   chargeObj
       // );
       // const charge = await respo.json();
@@ -74,7 +74,7 @@ export const postProjectBacker = (backerId, projectId, amount, userId, stripeId,
       };
 
       const res2 = await fetch(
-        "http://localhost:8080/api/users/" + userId + "/donationPool",
+        "https://debt-crusher-backend.herokuapp.com/api/users/" + userId + "/donationPool",
         donObj
       );
       const user = await res2.json();
@@ -96,7 +96,7 @@ export const postProjectBacker = (backerId, projectId, amount, userId, stripeId,
       };
 
       const response = await fetch(
-        "http://localhost:8080/api/projectBackers/",
+        "https://debt-crusher-backend.herokuapp.com/api/projectBackers/",
         reqObj
       );
       const json = await response.json();
@@ -116,7 +116,7 @@ export const postProjectBacker = (backerId, projectId, amount, userId, stripeId,
         })
       };
       const res = await fetch(
-        "http://localhost:8080/api/projects/" + projectId,
+        "https://debt-crusher-backend.herokuapp.com/api/projects/" + projectId,
         reqObj2
       );
       const project = await res.json();
