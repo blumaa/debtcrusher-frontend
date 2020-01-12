@@ -1,9 +1,11 @@
 import React, { Component } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import ExploreProjects from "./components/ExploreProjects";
 import MyProfile from "./components/MyProfile";
 import CreateProject from "./components/CreatProject";
+import StripeLogin from "./components/StripeLogin";
+import StripeCheckout from "./components/StripeCheckout";
 import MyProject from "./components/MyProject";
 import ProfileShow from "./components/ProfileShow";
 import SignUpForm from "./components/SignUpForm";
@@ -33,6 +35,8 @@ class App extends Component {
     return (
       <div className="App">
         <Route path="/" render={(props) => <NavBar {...props} currentUser={this.props.currentUser} />} />
+        <Redirect to="/welcome" />
+
         <Switch>
           <Route exact path="/sign_up" component={SignUpForm} />
           <Route exact path="/login" component={LogInForm} />
@@ -41,8 +45,11 @@ class App extends Component {
             <Route exact path="/myProfile" component={MyProfile} />
             <Route exact path="/myProject" component={MyProject} />
 
+            <Route exact path="/stripeLogin" component={StripeLogin} />
             <Route exact path="/createProject" component={CreateProject} />
             <Route exact path="/exploreProjects" component={ExploreProjects} />
+
+            <Route exact path="/stripeCheckout" component={StripeCheckout} />
 
             <Route exact path="/users/:id" component={ProfileShow} />
 

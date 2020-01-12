@@ -62,7 +62,7 @@ class MyProject extends Component {
                       floated="right"
                       size="small"
                       src={
-                        "https://debt-crusher.herokuapp.com/" +
+                        "http://localhost:8080/" +
                         this.props.currentUser.userImage
                       }
                     />
@@ -99,7 +99,7 @@ class MyProject extends Component {
               </Header>
             </Grid.Row>
             <Grid.Row>
-              <Button as={Link} to="/createProject">
+              <Button as={Link} to="/stripeLogin">
                 Get Help With a Loan
               </Button>
             </Grid.Row>

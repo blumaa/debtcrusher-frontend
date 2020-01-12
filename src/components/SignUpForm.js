@@ -1,25 +1,34 @@
 import React, { Component } from "react";
-import { Button, Form, Container, Header } from "semantic-ui-react";
-import { connect } from 'react-redux'
-import { signUpUser } from '../store/actions/users'
+import { Button, Form, Container, Header, Label } from "semantic-ui-react";
+import { connect } from "react-redux";
+import { signUpUser } from "../store/actions/users";
+import Calendar from 'react-input-calendar'
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
+import 'react-datepicker/dist/react-datepicker.css';
 
 class SignUpForm extends Component {
-  state = {
-    username: "",
-    displayName: "",
-    birthDate: "",
-    bio: "",
-    password: "",
-    passwordConfirm: ""
-  };
 
+    state = {
+      username: "",
+      displayName: "",
+      birthDate: new Date(),
+      bio: "",
+      password: "",
+      passwordConfirm: ""
+    };
 
   handleChange = e => {
     const name = e.target.name;
     this.setState({
       [name]: e.target.value
     });
+  };
 
+  handleBirthDateChange = date => {
+    this.setState({
+      birthDate: date
+    });
   };
 
   validatePassword = () => {
@@ -34,7 +43,7 @@ class SignUpForm extends Component {
   connectToStripe = e => {
     console.log(this.props.history);
     window.open(
-      `https://connect.stripe.com/express/oauth/authorize?redirect_uri=localhost:3000/myProfile&client_id=ca_GHuiRPzrsA38adHU0qaRWViSQtTd0xxK&state=foovbhjgjhg`
+      `https://connect.stripe.com/express/oauth/authorize?redirect_uri=localhost:3000/success&client_id=ca_GHuiRPzrsA38adHU0qaRWViSQtTd0xxK&state=foovbhjgjhg`
     );
   };
 
@@ -45,7 +54,6 @@ class SignUpForm extends Component {
   //   );
   // };
 
-
   render() {
     const passwordsMatch =
       this.state.password === this.state.passwordConfirm
@@ -53,12 +61,14 @@ class SignUpForm extends Component {
         : "Passwords MUST match";
 
     return (
-      <Container style={{ marginTop: '6.1em' }}>
+      <Container style={{ marginTop: "6.1em" }}>
         <Header as="h2">Sign Up for debtCrusher!</Header>
-        {/* <Button onClick={this.connectToStripe}>Connect to Stripe</Button>*/} 
+        {/* <Button onClick={this.connectToStripe}>Connect to Stripe</Button> */}
 
         <Form
-          onSubmit={(e)=>this.props.signUpUser(e,this.state, this.props.history)}
+          onSubmit={e =>
+            this.props.signUpUser(e, this.state, this.props.history)
+          }
           onChange={this.handleChange}
         >
           <Form.Input
@@ -77,14 +87,19 @@ class SignUpForm extends Component {
             id="display-name-field"
             required
           />
-          <Form.Input
-            label="Birth Date"
-            name="birthDate"
-            id="birth-date-field"
-            value={this.state.birthDate}
-            type="text"
-            required
-          />
+          <Form.Field required>
+            <label>Birth Date</label>
+              <DatePicker
+                dateFormat="yyyy-MM-dd"
+                selected={this.state.birthDate}
+                showYearDropdown
+                dropdownMode="select"
+                isClearable
+                onChange={this.handleBirthDateChange}
+                placeholderText="Click to select a date"
+
+              />
+          </Form.Field>
           <Form.Input
             label="User Image"
             name="userImage"
@@ -92,6 +107,7 @@ class SignUpForm extends Component {
             type="file"
             required
           />
+
           <Form.TextArea
             label="Bio"
             name="bio"
@@ -124,8 +140,8 @@ class SignUpForm extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    signUpUser: (e,user, history) => dispatch(signUpUser(e,user, history))
-  }
-}
+    signUpUser: (e, user, history) => dispatch(signUpUser(e, user, history))
+  };
+};
 
 export default connect(null, mapDispatchToProps)(SignUpForm);

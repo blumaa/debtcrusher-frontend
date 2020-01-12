@@ -2,13 +2,17 @@ import React, {Component} from 'react'
 import {Button, Header, Image, Modal, Form, Icon} from 'semantic-ui-react'
 import { editUser } from '../store/actions/users'
 import { connect } from 'react-redux'
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
+import 'react-datepicker/dist/react-datepicker.css';
+
 
 class EditUserButton extends Component {
   state = {
     open: false,
     id: this.props.user.id,
     displayName: this.props.user.displayName || "",
-    birthDate: this.props.user.birthDate || "",
+    birthDate: new Date() || "",
     bio: this.props.user.bio || "",
     userImage: this.props.user.userImage
    }
@@ -36,6 +40,13 @@ class EditUserButton extends Component {
       [name]: e.target.value
     })
   }
+  
+  handleBirthDateChange = date => {
+    this.setState({
+      birthDate: date
+    });
+  };
+
 
   render() {
     const { open, dimmer } = this.state
@@ -59,14 +70,18 @@ class EditUserButton extends Component {
                 id="display-name-field"
                 required
               />
-              <Form.Input
-                label="Birth Date"
-                name="birthDate"
-                id="birth-date-field"
-                value={this.state.birthDate}
-                type="text"
-                required
-              />
+              <Form.Field>
+                <label>Birth Date</label>
+                  <DatePicker
+                    dateFormat="yyyy-MM-dd"
+                    selected={this.state.birthDate}
+                    showYearDropdown
+                    dropdownMode="select"
+                    isClearable
+                    onChange={this.handleBirthDateChange}
+                    placeholderText="Click to select a date"
+                  />
+              </Form.Field>
               <Form.Input
                 label="User Image"
                 name="userImage"

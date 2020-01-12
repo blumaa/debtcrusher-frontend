@@ -1,5 +1,6 @@
 import { updateProjectAmount } from "./projects";
 import { donationPoolUpdate } from "./users";
+import { chargeUser } from "./users";
 
 export const GET_BACKERS = "GET_BACKERS";
 
@@ -9,7 +10,7 @@ export const fetchBackers = () => {
   // console.log('this is the dispatch action project', project)
   return async dispatch => {
     try {
-      const response = await fetch("https://debt-crusher.herokuapp.com/api/projectBackers");
+      const response = await fetch("http://localhost:8080/api/projectBackers");
       const json = await response.json();
       // console.log(json)
       dispatch(getBackers(json));
@@ -25,21 +26,14 @@ export const POST_BACK_PROJECT = "POST_BACK_PROJECT";
 
 export const backProject = backer => ({ type: POST_BACK_PROJECT, backer });
 
-export const postProjectBacker = (backerId, projectId, amount, userId) => {
-  // console.log(backerId, projectId, amount, userId);
-  // split up the amount
-
-  // console.log("total amount", amount);
-
+export const postProjectBacker = (backerId, projectId, amount, userId, stripeId, history) => {
+  console.log(history)
   const newAmount = parseInt(amount);
 
   const donationPoolAmount = (10 / 100) * newAmount; //amount to go into the user's donation pool
 
-  // console.log(donationPoolAmount);
-
   const userProjectAmount = (90 / 100) * newAmount; //amount to go into the user's proejct
 
-  // console.log(userProjectAmount);
 
   // amount that goes into the user's pool
 
@@ -47,6 +41,25 @@ export const postProjectBacker = (backerId, projectId, amount, userId) => {
     // amount that goes to project - create projectBacker join table
     try {
       /* create new projectbacker join table */
+
+      // const chargeObj = { // charge stripe checkout
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json"
+      //   },
+      //   body: JSON.stringify({
+      //     amount: userProjectAmount,
+      //     stripe_user_id: stripeId
+      //   })
+      // };
+      //
+      // const respo = await fetch(
+      //   "http://localhost:8080/api/stripe/checkout/",
+      //   chargeObj
+      // );
+      // const charge = await respo.json();
+      // // console.log(json);
+      // dispatch(chargeUser(charge));
 
     const donObj = {
         // amount that goes into the user's pool
@@ -61,7 +74,7 @@ export const postProjectBacker = (backerId, projectId, amount, userId) => {
       };
 
       const res2 = await fetch(
-        "https://debt-crusher.herokuapp.com/api/users/" + userId + "/donationPool",
+        "http://localhost:8080/api/users/" + userId + "/donationPool",
         donObj
       );
       const user = await res2.json();
@@ -83,7 +96,7 @@ export const postProjectBacker = (backerId, projectId, amount, userId) => {
       };
 
       const response = await fetch(
-        "https://debt-crusher.herokuapp.com/api/projectBackers/",
+        "http://localhost:8080/api/projectBackers/",
         reqObj
       );
       const json = await response.json();
@@ -103,14 +116,16 @@ export const postProjectBacker = (backerId, projectId, amount, userId) => {
         })
       };
       const res = await fetch(
-        "https://debt-crusher.herokuapp.com/api/projects/" + projectId,
+        "http://localhost:8080/api/projects/" + projectId,
         reqObj2
       );
       const project = await res.json();
       // console.log("look at this project", project);
       return dispatch(updateProjectAmount(project));
+      history.push('/stripeCheckout')
     } catch (error) {
       console.error("Error fetching user:", error);
     }
+
   };
 };

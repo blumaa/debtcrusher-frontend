@@ -1,12 +1,13 @@
 import React from "react";
 import { Card, Icon, Image, Grid, Progress, Button } from "semantic-ui-react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import FundButton from "./FundButton";
 import ProjectDetailsButton from "./ProjectDetailsButton";
 
 const ProjectCard = props => {
-  const { proj, total } = props;
-  // console.log(proj)
+  // console.log(props.history)
+  const { proj, total, history } = props;
+  // console.log(proj, history)
   return (
     <Grid.Column>
       <Card>
@@ -20,7 +21,7 @@ const ProjectCard = props => {
           <Image
             floated="right"
             size="small"
-            src={"https://debt-crusher.herokuapp.com/" + proj.User.userImage}
+            src={"http://localhost:8080/" + proj.User.userImage}
           />
           <Card.Header>{proj.name}</Card.Header>
           <Card.Description>
@@ -35,7 +36,7 @@ const ProjectCard = props => {
         <Card.Content extra>
           <div className="ui two buttons">
             <ProjectDetailsButton proj={proj} total={total} />
-            {proj.funded === true ? <Button className="ui olive item">THIS PROJECT HAS BEEN FUNDED!</Button> : <FundButton project={proj} /> }
+            { proj.funded === true ? <Button className="ui olive item">THIS PROJECT HAS BEEN FUNDED!</Button> : <FundButton project={proj} history={history}/> }
           </div>
         </Card.Content>
       </Card>

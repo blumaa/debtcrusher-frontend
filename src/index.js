@@ -9,6 +9,7 @@ import rootReducer from "./store/reducers/rootReducer";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { createLogger } from "redux-logger";
+import { StripeProvider, Elements } from 'react-stripe-elements'
 
 
 const logger = createLogger({ collapsed: true });
@@ -20,7 +21,9 @@ const store = createStore(rootReducer, middleware);
 ReactDOM.render(
   <Provider store={store}>
     <Router>
-      <App />
+      <StripeProvider apiKey="pk_test_X0thcojGGxEp3XtB9jdfsbN300YaRD7FnG">
+        <App />
+      </StripeProvider>
     </Router>
   </Provider>,
   document.getElementById("root")

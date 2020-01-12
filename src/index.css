@@ -21,3 +21,31 @@ html {
 .ui.explore {
   padding-top: 100px;
 }
+
+/* .MyCardElement {
+  height: 40px;
+  padding: 10px 12px;
+  width: 100%;
+  color: #32325d;
+  background-color: white;
+  border: 1px solid transparent;
+  border-radius: 4px;
+
+  box-shadow: 0 1px 3px 0 #e6ebf1;
+  -webkit-transition: box-shadow 150ms ease;
+  transition: box-shadow 150ms ease;
+} */
+
+* {
+  box-sizing: border-box;
+}
+
+.StripeElement {
+  width: 500px;
+}
+
+.StripeElement--focus {
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+}

@@ -8,7 +8,8 @@ class CreateProject extends Component {
     name: '',
     goal: 0,
     school: '',
-    userId: this.props.currentUser.id
+    userId: this.props.currentUser.id,
+    stripeId: ''
   }
 
   handleSubmit = e => {
@@ -31,11 +32,45 @@ class CreateProject extends Component {
     console.log(this.state)
   }
 
+
+  componentDidMount = () => {
+    console.log(this.props.location.search)
+    const codeWithState = this.props.location.search.split('=')
+    console.log(codeWithState[1])
+    const code = codeWithState[1].split('&')
+    console.log(code)
+    const newCode = code[0]
+    console.log(newCode)
+
+    const reqObj = {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        code: newCode
+      })
+    }
+
+    fetch('http://localhost:8080/api/stripe/token', reqObj)
+    .then(res => res.json())
+    .then(data => {
+      console.log(data)
+      this.setState({
+        stripeId: data.resp.stripe_user_id
+      })
+      console.log(this.state)
+    })
+  }
+
   render() {
     // console.log('this b the user', this.props.currentUser)
+    // console.log('uri params', this.props.location.search)
+
     return (
       <Container className="ui main">
         <Header as="h2">Do you need help with a loan? Create a project!</Header>
+
       <Form onSubmit={this.handleSubmit} >
         <Form.Field>
           <label>Title of Project / Loan (Why do you need help?)</label>

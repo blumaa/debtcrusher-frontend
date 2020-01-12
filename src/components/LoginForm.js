@@ -11,6 +11,8 @@ import {
 import { loginUser } from "../store/actions/users";
 import { connect } from "react-redux";
 import mainLogo from "../images/debtCrusherPS.png";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 class LogInForm extends Component {
   state = {
@@ -75,6 +77,7 @@ class LogInForm extends Component {
           <Message>
             New to us? <a href="/sign_up">Sign Up</a>
           </Message>
+          <ToastContainer autoClose={2000} />
         </Grid.Column>
       </Grid>
     );

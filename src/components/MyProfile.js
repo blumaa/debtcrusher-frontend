@@ -5,6 +5,10 @@ import MyProjectBackersList from "./MyProjectBackersList";
 import MySecondaryProjectBackersList from "./MySecondaryProjectBackersList";
 import FundOtherStudentsButton from "./FundOtherStudentsButton";
 import EditUserButton from './EditUserButton'
+import {
+  Elements
+} from "react-stripe-elements";
+
 
 
 class MyProfile extends Component {
@@ -17,7 +21,9 @@ class MyProfile extends Component {
             You have ${this.props.currentUser.donationPool} in your donation
             pool to back projects with.
             {this.props.currentUser.donationPool > 0 ? (
-              <FundOtherStudentsButton currentUser={this.props.currentUser} />
+              <Elements>
+                <FundOtherStudentsButton currentUser={this.props.currentUser} />
+              </Elements>
             ) : (
               "Get some more backers!"
             )}
@@ -41,7 +47,7 @@ class MyProfile extends Component {
               <Segment>
                 <Image
                   src={
-                    "https://debt-crusher.herokuapp.com/" + this.props.currentUser.userImage
+                    "http://localhost:8080/" + this.props.currentUser.userImage
                   }
                   size="small"
                   floated="left"

@@ -4,6 +4,7 @@ import { Grid, Header, Container } from "semantic-ui-react";
 import ProjectCard from "./ProjectCard";
 
 const ExploreProjects = props => {
+  // console.log(props.history)
   const renderedProjects = props.projects.map(proj => {
     const projBackers = props.backers.filter(backer => {
       // console.log(backer);
@@ -12,7 +13,7 @@ const ExploreProjects = props => {
     const backerMoneyArr = projBackers.map(backer => backer.amount);
     const reducer = (accumulator, currentValue) => accumulator + currentValue;
     const total = backerMoneyArr.reduce(reducer, 0);
-    return <ProjectCard key={proj.id} proj={proj} total={total} />;
+    return <ProjectCard key={proj.id} proj={proj} total={total} history={props.history}/>;
   });
   return (
     <Container className="ui explore">

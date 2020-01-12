@@ -10,7 +10,8 @@ import {
 } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { createSecondaryBacker } from '../store/actions/secondaryBacker'
+import { createSecondaryBacker } from "../store/actions/secondaryBacker";
+import { Elements, injectStripe } from "react-stripe-elements";
 
 class FundOtherStudentsButton extends Component {
   state = {
@@ -18,30 +19,52 @@ class FundOtherStudentsButton extends Component {
     donationPool: this.props.currentUser.donationPool,
     amount: 0,
     userId: this.props.currentUser.id,
-    projectId: 0
+    projectId: 0,
+    stripeId: ""
   };
 
+  handleSubmit = e => {
+    e.preventDefault();
+    fetch("http://localhost:8080/api/stripe/secondaryCheckout", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        amount: this.state.amount,
+        stripeId: this.state.stripeId
+      })
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        console.log("secondary payment completed");
 
-  handleSubmit = () => {
-    console.log(this.props);
-    this.props.createSecondaryBacker({amount: this.state.amount, userId: this.state.userId, projectId: this.state.projectId});
+      });
+      this.props.createSecondaryBacker({
+        amount: this.state.amount,
+        userId: this.state.userId,
+        projectId: this.state.projectId
+      });
     this.setState({
       open: false,
       donationPool: 0,
       amount: 0,
       projectId: 0,
-      userId: 0
+      userId: 0,
+      stripeId: ""
     });
   };
 
-
   handleChange = e => {
+    console.log(e.target.dataset.stripeid);
     const name = e.target.name;
     this.setState({
       [name]: parseInt(e.target.value),
-      projectId: parseInt(e.target.id)
+      projectId: parseInt(e.target.id),
+      stripeId: e.target.dataset.stripeid
     });
-    // console.log(this.state)
+    console.log(this.state);
   };
 
   show = dimmer => () => this.setState({ dimmer, open: true });
@@ -61,15 +84,18 @@ class FundOtherStudentsButton extends Component {
       const reducer = (accumulator, currentValue) => accumulator + currentValue;
       const total = backerMoneyArr.reduce(reducer, 0);
 
-
       // console.log('fund other students button', proj)
+      console.log(proj.stripe_user_id);
       return (
         <Form.Field key={proj.id}>
           <Grid.Row>
             <Card>
               <Card.Content>
                 Project Created By:
-                <Card.Content as={Link} to={proj.User ? "/users/" + proj.User.id : ""}>
+                <Card.Content
+                  as={Link}
+                  to={proj.User ? "/users/" + proj.User.id : ""}
+                >
                   {proj.User ? proj.User.displayName : null}
                 </Card.Content>
               </Card.Content>
@@ -77,7 +103,7 @@ class FundOtherStudentsButton extends Component {
                 <Image
                   floated="right"
                   size="small"
-                  src={"https://debt-crusher.herokuapp.com/" + proj.User.userImage}
+                  src={"http://localhost:8080/" + proj.User.userImage}
                 />
                 <Card.Header>{proj.name}</Card.Header>
                 <Card.Description>
@@ -91,18 +117,20 @@ class FundOtherStudentsButton extends Component {
             </Card>
           </Grid.Row>
           <Grid.Row>
-              <input
-                type="radio"
-                name="amount"
-                id={proj.id}
-                value={this.state.donationPool}
-                onChange={this.handleChange}
-              />
-              <label>Donate to {proj.name}</label>
+            <input
+              type="radio"
+              name="amount"
+              id={proj.id}
+              data-stripeid={proj.stripe_user_id}
+              value={this.state.donationPool}
+              onChange={this.handleChange}
+            />
+            <label>Donate to {proj.name}</label>
           </Grid.Row>
         </Form.Field>
       );
     });
+    console.log(this.props);
 
     return (
       <>
@@ -142,10 +170,12 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    createSecondaryBacker: (secondaryBacker) => dispatch(createSecondaryBacker(secondaryBacker))
-
+    createSecondaryBacker: secondaryBacker =>
+      dispatch(createSecondaryBacker(secondaryBacker))
   };
 };
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(FundOtherStudentsButton);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(FundOtherStudentsButton);

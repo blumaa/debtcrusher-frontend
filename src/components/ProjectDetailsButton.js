@@ -28,7 +28,7 @@ class ProjectDetailsButton extends Component {
           <Modal.Header>
             {this.props.proj.name}
             <Image
-              src={"https://debt-crusher.herokuapp.com/" + this.props.proj.User.userImage}
+              src={"http://localhost:8080/" + this.props.proj.User.userImage}
               size="small"
               floated="left"
             />
