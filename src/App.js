@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Redirect, Route, Link } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import ExploreProjects from "./components/ExploreProjects";
 import MyProfile from "./components/MyProfile";
@@ -18,6 +18,7 @@ import { fetchProjects } from "./store/actions/projects";
 import { fetchBackers } from "./store/actions/projectBackers";
 import { fetchUsers } from "./store/actions/users";
 import { fetchSecondaryBackers } from "./store/actions/secondaryBacker";
+import ParticleComponent from "../src/components/ParticleComponent";
 
 
 class App extends Component {
@@ -33,33 +34,42 @@ class App extends Component {
   };
   render() {
     return (
-      <div className="App">
-        <Route path="/" render={(props) => <NavBar {...props} currentUser={this.props.currentUser} />} />
-        <Redirect to="/welcome" />
-        <Route exact path="/welcome" component={Welcome} />
+      <>
 
-        <Switch>
-          <Route exact path="/sign_up" component={SignUpForm} />
-          <Route exact path="/login" component={LogInForm} />
-          {this.props.currentUser ? (
-            <>
-            <Route exact path="/myProfile" component={MyProfile} />
-            <Route exact path="/myProject" component={MyProject} />
+      <Router>
 
-            <Route exact path="/stripeLogin" component={StripeLogin} />
-            <Route exact path="/createProject" component={CreateProject} />
-            <Route exact path="/exploreProjects" component={ExploreProjects} />
+        <ParticleComponent />
 
-            <Route exact path="/stripeCheckout" component={StripeCheckout} />
+              <div className="app">
+                  <Route path="/" render={(props) => <NavBar {...props} currentUser={this.props.currentUser} />} />
+                  <Redirect to="/welcome" />
+                  <Route exact path="/welcome" component={Welcome} />
 
-            <Route exact path="/users/:id" component={ProfileShow} />
+                  <Switch>
+                    <Route exact path="/sign_up" component={SignUpForm} />
+                    <Route exact path="/login" component={LogInForm} />
+                    {this.props.currentUser ? (
+                      <>
+                      <Route exact path="/myProfile" component={MyProfile} />
+                      <Route exact path="/myProject" component={MyProject} />
 
-            </>
-          ) : (
-            <Route exact path="/login" component={LogInForm} />
-          )}
-        </Switch>
-      </div>
+                      <Route exact path="/stripeLogin" component={StripeLogin} />
+                      <Route exact path="/createProject" component={CreateProject} />
+                      <Route exact path="/exploreProjects" component={ExploreProjects} />
+
+                      <Route exact path="/stripeCheckout" component={StripeCheckout} />
+
+                      <Route exact path="/users/:id" component={ProfileShow} />
+
+                      </>
+                    ) : (
+                      <Route exact path="/login" component={LogInForm} />
+                    )}
+                  </Switch>
+        </div>
+      </Router>
+
+      </>
     );
   }
 }
