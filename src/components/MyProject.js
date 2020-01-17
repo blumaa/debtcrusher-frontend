@@ -10,7 +10,8 @@ import {
   Grid,
   Header,
   Container,
-  Progress
+  Progress,
+  Segment
 } from "semantic-ui-react";
 import ProjectBackersList from "./ProjectBackersList";
 
@@ -49,23 +50,22 @@ class MyProject extends Component {
 
       return (
         <Container className="ui main">
-          <Header as="h2">My Project</Header>
-          <Grid columns="equal" padded divided>
+
+          <Grid columns="equal" padded stackable>
             {/* <Grid.Row stretched>
               <Button onClick={this.connectToStripe}>Connect to Stripe</Button>
             </Grid.Row>*/}
             <Grid.Row>
               <Grid.Column>
-                <Card>
-                  <Card.Content extra>
-                    <Image
-                      floated="right"
-                      size="small"
-                      src={
-                        "https://debt-crusher-backend.herokuapp.com/" +
-                        this.props.currentUser.userImage
-                      }
-                    />
+                <Card fluid>
+                  <Card.Content>
+                    <Header as="h2">My Project</Header>
+                  </Card.Content>
+                </Card>
+                <Card fluid>
+                  <Card.Content textAlign="center">
+                    <Segment><iframe width="255" height="160" src="https://www.youtube.com/embed/lZJjygOli78" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </Segment>
                     <Card.Header>{userProject.name}</Card.Header>
                     <Card.Description>
                       This student needs ${userProject.goal} to get an education
@@ -91,7 +91,7 @@ class MyProject extends Component {
     } else {
       return (
         <Container className="ui main">
-          <Grid>
+          <Grid stackable>
             <Grid.Row>
               <Header as="h2" className="ui main">
                 You don't have a Student Loan Project. Would you like to create

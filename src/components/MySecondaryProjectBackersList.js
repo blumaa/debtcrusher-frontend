@@ -17,7 +17,7 @@ const MySecondaryProjectBackersList = props => {
       if (!proj){
         console.log('asdfasf')
         return (
-          <Card key={backer.id}>
+          <Card key={backer.id} fluid>
             <Card.Content>
              invalid card
             </Card.Content>
@@ -27,7 +27,7 @@ const MySecondaryProjectBackersList = props => {
       const user = props.users.find(user=> user.id === proj.userId)
       // console.log(proj)
         return (
-          <Card key={backer.id}>
+          <Card key={backer.id} fluid>
             <Card.Content>
               You are backing the project <strong>{proj.name}</strong> created by <Link as={Link} to={'/users/' + user.id}>{user.displayName}</Link> for <strong>${backer.amount}</strong>.
             </Card.Content>

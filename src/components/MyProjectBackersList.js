@@ -23,7 +23,7 @@ class MyProjectBackersList extends Component {
     // }
     const user = allUsers.find(user => user.id === proj.userId);
     return (
-      <Card key={backer.id}>
+      <Card key={backer.id} fluid>
         <Card.Content>
           You are backing the project <strong>{proj ? proj.name : ""}</strong> created by
           <Link as={Link} to={"/users/" + user.id}>

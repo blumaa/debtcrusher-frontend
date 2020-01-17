@@ -42,7 +42,7 @@ class App extends Component {
 
               <div className="app">
                   <Route path="/" render={(props) => <NavBar {...props} currentUser={this.props.currentUser} />} />
-                  <Redirect to="/welcome" />
+                  // <Redirect to="/welcome" />
                   <Route exact path="/welcome" component={Welcome} />
 
                   <Switch>

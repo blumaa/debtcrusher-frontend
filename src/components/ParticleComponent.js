@@ -110,7 +110,7 @@ export default () => (
             },
             "repulse": {
               "distance": 75,
-              "duration": .5
+              "duration": 10
             },
             "push": {
               "particles_nb": 4

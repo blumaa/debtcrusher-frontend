@@ -1,22 +1,25 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { Header, Container, Segment, List, Button } from "semantic-ui-react";
+import { Header, Container, Segment, List, Button, Card } from "semantic-ui-react";
 
 const Welcome = props => {
   return (
     <Container className="ui main">
-      <Header as="h1" >
-        Welcome to debtCrusher, {props.currentUser ? props.currentUser.displayName : "User"}!
-      </Header>
       <Segment>
-        If you are a beta tester or just checking out the site, feel free to sign up and play around with the site. Everything is still in development so none of the payment forms are real. But everything works!
+
+          <Header as="h1" >
+            Welcome to debtCrusher, {props.currentUser ? props.currentUser.displayName : "User"}!
+          </Header>
+
       </Segment>
+      <Container className="ui container welcome">
+        If you are a beta tester or just checking out the site, feel free to sign up and play around with the site. Everything is still in development so none of the payment forms are real. But everything works!
+      </Container>
       <Segment>
         <Header as="h3">
           Here's how debtCrusher works:
         </Header>
-        <Container>
         <p>
           As a student, we know you need help paying your student loans. There is too much student loan debt in the United States of America!
         </p>
@@ -38,8 +41,9 @@ const Welcome = props => {
           </List.Item>
           <List.Item>In this way, <strong>ALL of the money</strong> gets paid forward.</List.Item>
         </List>
-        <Header as="h3">debtCrusher doesn't get any money!</Header>
-      </Container>
+      </Segment>
+      <Segment>
+      <Header as="h3">debtCrusher doesn't get any money!</Header>
       </Segment>
       <Button as={ Link } to="/exploreProjects" className="ui green item">Click here to start helping students!</Button>
     </Container>

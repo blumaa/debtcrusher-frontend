@@ -15,8 +15,8 @@ const ProjectBackersList = props => {
       const user = props.users.find(user => user.id === backer.backerId);
       if (backer.backerId === user.id) {
         return (
-          <Card key={backer.id}>
-            <Card.Content>
+          <Card key={backer.id} fluid>
+            <Card.Content textAlign='center'>
               <Card.Content as={Link} to={"/users/" + user.id}>
                 {user.displayName}{" "}
               </Card.Content>
@@ -30,18 +30,19 @@ const ProjectBackersList = props => {
   }
   console.log(props.project)
   return (
+      <>
+        <Card fluid>
+          <Card.Content>
+            <Header as="h2">Who is helping with this loan?</Header>
+          </Card.Content>
+        </Card>
 
-      <Container>
-        <Grid columns="equal" padded divided>
-          <Grid.Row>
-            <Header>People who are helping you with your loan:</Header>
-          </Grid.Row>
-          <Grid.Row>
+        <Card fluid>
+          <Card.Content>
             {props.project.projectBackers.length > 0 ? userBackers : <Header as="h4"> No one is helping you yet! </Header>}
-          </Grid.Row>
-        </Grid>
-      </Container>
-
+          </Card.Content>
+        </Card>
+      </>
   );
 };
 
