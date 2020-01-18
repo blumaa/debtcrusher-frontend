@@ -45,7 +45,9 @@ const Welcome = props => {
       <Segment>
       <Header as="h3">debtCrusher doesn't get any money!</Header>
       </Segment>
+      <Segment>
       <Button as={ Link } to="/exploreProjects" className="ui green item">Click here to start helping students!</Button>
+      </Segment>
     </Container>
   );
 };

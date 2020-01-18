@@ -11,7 +11,8 @@ import {
   Header,
   Container,
   Progress,
-  Segment
+  Segment,
+  Divider
 } from "semantic-ui-react";
 import ProjectBackersList from "./ProjectBackersList";
 
@@ -43,7 +44,7 @@ class MyProject extends Component {
       const backerMoneyArr = projBackers.map(backer => backer.amount);
       const reducer = (accumulator, currentValue) => accumulator + currentValue;
       const total = backerMoneyArr.reduce(reducer, 0);
-
+      const totalHelpToOtherProjects = total * .1
       // console.log(backerMoneyArr);
       // console.log(total);
       // console.log(projBackers);
@@ -64,21 +65,47 @@ class MyProject extends Component {
                 </Card>
                 <Card fluid>
                   <Card.Content textAlign="center">
-                    <Segment><iframe width="255" height="160" src="https://www.youtube.com/embed/lZJjygOli78" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </Segment>
-                    <Card.Header>{userProject.name}</Card.Header>
-                    <Card.Description>
-                      This student needs ${userProject.goal} to get an education
+
+                    <Segment>
+
+                      <Grid columns="equal" verticalAlign='middle' >
+                        <Grid.Row>
+                          <Grid.Column>
+                            <iframe width="255" height="160" src="https://www.youtube.com/embed/lZJjygOli78" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+                          </Grid.Column>
+                          <Grid.Column>
+                            <Card.Description className="card description">Original Loan Goal: 1000</Card.Description>
+                          </Grid.Column>
+                        </Grid.Row>
+
+                      </Grid>
+                    </Segment>
+
+                    <div>Title:</div>
+                    <div className="card title">{userProject.name}</div>
+                    <Divider />
+                    <Card.Description className="card description">
+                      I only need ${userProject.goal} to reach my goal!
                     </Card.Description>
                   </Card.Content>
-                  <Card.Content extra>
+
+                  <Card.Content extra textAlign="center">
+                    <Segment>
                     <Icon name="money" />
                     Total amount of backing money: ${total}
                     <Progress
                       percent={(total / userProject.goal) * 100}
                       indicating
                     />
+                  </Segment>
                   </Card.Content>
+                  <Card.Content extra textAlign="center">
+
+                    People helping this loan are also giving ${totalHelpToOtherProjects} to other student's loans.
+                  </Card.Content>
+
+
                 </Card>
               </Grid.Column>
               <Grid.Column>
