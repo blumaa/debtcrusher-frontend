@@ -62,9 +62,7 @@ body {
   transition: box-shadow 150ms ease;
 } */
 
-* {
-  box-sizing: border-box;
-}
+
 
 .StripeElement {
   width: 500px;

@@ -76,6 +76,7 @@ class _CardForm extends Component {
 
   handleSubmit = ev => {
     ev.preventDefault();
+    console.log(this.state.country);
 
     const cardElement = this.props.elements.getElement("card");
     const billDetails = {
@@ -133,7 +134,9 @@ class _CardForm extends Component {
   };
 
   selectCountry = val => {
+    console.log(val);
     this.setState({ country: val });
+    console.log(this.state.country)
   };
 
   render() {
@@ -285,8 +288,10 @@ class _CardForm extends Component {
               required
             />
             <CountryDropdown
-          value={this.state.country}
-          onChange={(val) => this.selectCountry(val)} />
+              valueType="short"
+              value={this.state.country}
+              onChange={val => this.selectCountry(val)}
+            />
           </Form.Group>
         </Form.Field>
         <Form.Field>

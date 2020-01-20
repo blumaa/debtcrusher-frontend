@@ -7,13 +7,17 @@ import {
   Container,
   Image,
   Menu,
+  Icon,
+
 } from "semantic-ui-react";
 
+
 const NavBar = props => {
+
   // console.log('navbar current user', props.currentUser)
   return (
-      <Menu fixed="top" inverted>
-        <Container>
+    <>
+      <Menu stackable fixed="top" inverted>
           {props.currentUser ? (
             <>
             <Menu.Item
@@ -29,24 +33,24 @@ const NavBar = props => {
               Logout
             </Menu.Item>
             <Menu.Item as={NavLink} to="/myProfile" className="olive item">
-              {props.currentUser.username}
+              <Icon name='user' />{props.currentUser.username}
             </Menu.Item>
               <Menu.Item as={NavLink} to="/myProject" className="violet item">
-                My Project
+                <Icon name='suitcase' />My Project
               </Menu.Item>
               <Menu.Item
                 as={NavLink}
                 to="/exploreProjects"
                 className="blue item"
                 >
-                Help a Student!
+                <Icon name='search' />Help a Student!
               </Menu.Item>
               <Menu.Item
                 as={NavLink}
                 to={"/welcome"}
                 className="grey item"
                 >
-                Info
+                <Icon name='info circle' />Info
               </Menu.Item>
             </>
           ) : (
@@ -59,8 +63,7 @@ const NavBar = props => {
               </Menu.Item>
             </>
           )}
-        </Container>
-          <Menu.Item header position="right">
+          <Menu.Item position="right">
             <Image
               as={NavLink}
               to={"/welcome"}
@@ -70,6 +73,8 @@ const NavBar = props => {
             />
           </Menu.Item>
       </Menu>
+
+      </>
   );
 };
 

@@ -48,7 +48,15 @@ class MyProject extends Component {
       // console.log(backerMoneyArr);
       // console.log(total);
       // console.log(projBackers);
-
+      /* <iframe width="560" height="315" src="https://www.youtube.com/embed/lZJjygOli78" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> */
+      console.log(userProject.video_url)
+      const vidSplit1 = userProject.video_url.split("=")
+      console.log(vidSplit1)
+      const vidSplit2 = vidSplit1[1].split("&")
+      console.log(vidSplit2)
+      console.log(userProject.description)
+      console.log(userProject.goal)
+      console.log(userProject.current_goal)
       return (
         <Container className="ui main">
 
@@ -71,33 +79,33 @@ class MyProject extends Component {
                       <Grid columns="equal" verticalAlign='middle' >
                         <Grid.Row>
                           <Grid.Column>
-                            <iframe width="255" height="160" src="https://www.youtube.com/embed/lZJjygOli78" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <iframe width="255" height="160" src={"https://www.youtube.com/embed/" + vidSplit2[0]} frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
                           </Grid.Column>
                           <Grid.Column>
-                            <Card.Description className="card description">Original Loan Goal: 1000</Card.Description>
+                            <Card.Description className="card description">Total student loan debt: <Header className="ui red item">${userProject.goal}</Header></Card.Description>
                           </Grid.Column>
                         </Grid.Row>
 
                       </Grid>
                     </Segment>
-
-                    <div>Title:</div>
                     <div className="card title">{userProject.name}</div>
                     <Divider />
                     <Card.Description className="card description">
-                      I only need ${userProject.goal} to reach my goal!
+                      {userProject.description}
                     </Card.Description>
                   </Card.Content>
 
                   <Card.Content extra textAlign="center">
                     <Segment>
-                    <Icon name="money" />
-                    Total amount of backing money: ${total}
+                      <Card.Description className="card description">I only need ${userProject.current_goal} to reach my goal!</Card.Description>
+
                     <Progress
                       percent={(total / userProject.goal) * 100}
                       indicating
                     />
+                  <Icon name="money" />
+                  Total amount of backing money: ${total}
                   </Segment>
                   </Card.Content>
                   <Card.Content extra textAlign="center">
@@ -118,18 +126,24 @@ class MyProject extends Component {
     } else {
       return (
         <Container className="ui main">
-          <Grid stackable>
+          <Grid stackable stretched>
             <Grid.Row>
-              <Header as="h2" className="ui main">
-                You don't have a Student Loan Project. Would you like to create
-                one?
-              </Header>
+              <Card>
+                <Card.Content>
+                  <Header as="h3">
+                    You don't have a Student Loan Project. Would you like to create
+                    one?
+                  </Header>
+                  </Card.Content>
+                  <Card.Content textAlign="center">
+                  <Button as={Link} to="/stripeLogin" className="ui blue item">
+                    Get Help With a Loan
+                  </Button>
+
+                </Card.Content>
+              </Card>
             </Grid.Row>
-            <Grid.Row>
-              <Button as={Link} to="/stripeLogin">
-                Get Help With a Loan
-              </Button>
-            </Grid.Row>
+
           </Grid>
         </Container>
       );

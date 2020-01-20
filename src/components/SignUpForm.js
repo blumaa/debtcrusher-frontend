@@ -59,6 +59,7 @@ class SignUpForm extends Component {
         : "Passwords MUST match";
 
     return (
+      
       <Container style={{ marginTop: "6.1em" }}>
         <Header as="h2">Sign Up for debtCrusher!</Header>
         {/* <Button onClick={this.connectToStripe}>Connect to Stripe</Button> */}

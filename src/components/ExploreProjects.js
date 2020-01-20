@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Grid, Header, Container } from "semantic-ui-react";
+import { Grid, Header, Container, Segment, Card } from "semantic-ui-react";
 import ProjectCard from "./ProjectCard";
 import { fetchProjects } from "../store/actions/projects";
 
@@ -14,6 +14,7 @@ class ExploreProjects extends Component {
   render() {
     // console.log(this.props.history)
     const renderedProjects = this.props.projects.map(proj => {
+
       const projBackers = this.props.backers.filter(backer => {
         // console.log(backer);
         return backer.primaryProjectId == proj.id;
@@ -21,6 +22,7 @@ class ExploreProjects extends Component {
       const backerMoneyArr = projBackers.map(backer => backer.amount);
       const reducer = (accumulator, currentValue) => accumulator + currentValue;
       const total = backerMoneyArr.reduce(reducer, 0);
+
       return (
         <ProjectCard
           key={proj.id}
@@ -29,13 +31,25 @@ class ExploreProjects extends Component {
           history={this.props.history}
         />
       );
+
     });
     console.log(renderedProjects);
 
     return (
       <Container className="ui explore">
-        <Grid columns={3}>
-          <Header as="h2">Help a student!</Header>
+        <Grid>
+          <Grid.Row>
+            <Grid.Column>
+              <Card fluid>
+                <Card.Content textAlign="center">
+                  <Header as="h2" className="ui blue item">Explore the projects. Help a student!</Header>
+                </Card.Content>
+              </Card>
+
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+        <Grid stackable columns={3}>
           <Grid.Row>
             {renderedProjects.length > 0
               ? renderedProjects

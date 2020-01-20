@@ -1,11 +1,12 @@
 import React from "react";
 import Particles from "react-particles-js";
+import dollar from '../images/dollar.svg'
 
 export default () => (
   <div
     style={{
-      position: "absolute",
-      top: 90,
+      position: "fixed",
+      top: 70,
       left: 0,
       width: "100%",
       height: "100%"
@@ -15,35 +16,35 @@ export default () => (
       params={{
         "particles": {
           "number": {
-            "value": 100,
+            "value": 300,
             "density": {
               "enable": true,
-              "value_area": 700
+              "value_area": 1000
             }
           },
           "color": {
-            "value": "#fdff9c"
+            "value": "#12cfc9"
           },
           "shape": {
-            "type": "star",
+            "type": "circle",
             "stroke": {
-              "width": 0.25,
+              "width": 0.75,
               "color": "#00f0ff"
             },
             "polygon": {
-              "nb_sides": 16
+              "nb_sides": 1
             },
             "image": {
-              "src": "img/github.svg",
-              "width": 100,
-              "height": 100
+              "src": {dollar},
+              "width": 500,
+              "height": 500
             }
           },
           "opacity": {
-            "value": 0,
+            "value": 0.5,
             "random": false,
             "anim": {
-              "enable": false,
+              "enable": true,
               "speed": 1,
               "opacity_min": 0.1,
               "sync": false
@@ -61,21 +62,21 @@ export default () => (
           },
           "line_linked": {
             "enable": true,
-            "distance": 100,
+            "distance": 140,
             "color": "#ffffff",
-            "opacity": 4,
+            "opacity": .5,
             "width": 1
           },
           "move": {
             "enable": true,
-            "speed": .2,
+            "speed": 1,
             "direction": "none",
-            "random": false,
+            "random": true,
             "straight": false,
             "out_mode": "out",
             "bounce": true,
             "attract": {
-              "enable": false,
+              "enable": true,
               "rotateX": 600,
               "rotateY": 1200
             }
@@ -89,7 +90,7 @@ export default () => (
               "mode": "repulse"
             },
             "onclick": {
-              "enable": false,
+              "enable": true,
               "mode": "push"
             },
             "resize": true
@@ -109,11 +110,11 @@ export default () => (
               "speed": 3
             },
             "repulse": {
-              "distance": 75,
-              "duration": 10
+              "distance": 100,
+              "duration": .1
             },
             "push": {
-              "particles_nb": 4
+              "particles_nb": 10
             },
             "remove": {
               "particles_nb": 2
