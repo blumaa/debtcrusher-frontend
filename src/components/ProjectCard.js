@@ -52,7 +52,7 @@ const ProjectCard = props => {
 
         <Card.Content extra textAlign="center">
           <Segment>
-            <Card.Description className="card description">I only need ${proj.current_goal} to reach my goal!</Card.Description>
+            <Card.Description className="card description">I only need ${proj.goal} to reach my goal!</Card.Description>
 
           <Progress
             percent={(total / proj.goal) * 100}
