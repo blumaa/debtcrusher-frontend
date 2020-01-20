@@ -41,6 +41,8 @@ class App extends Component {
         <ParticleComponent />
 
               <div className="app">
+
+                <Route exact path="/" component={Welcome} />
                   <Route path="/" render={(props) => <NavBar {...props} currentUser={this.props.currentUser} />} />
                   <Route exact path="/welcome" component={Welcome} />
 

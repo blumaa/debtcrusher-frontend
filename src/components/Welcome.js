@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Header, Container, Segment, List, Button, Card, Grid } from "semantic-ui-react";
 
 const Welcome = props => {
+  console.log(props.currentUser)
   return (
     <Container className="ui main">
       <Segment raised>
@@ -46,9 +47,9 @@ const Welcome = props => {
         <Grid.Row>
           <Grid.Column textAlign="center">
 
-            <Button as={ Link } to="/exploreProjects" className="ui green item">          <Header as="h3" inverted>
-Click here to start helping students!</Header></Button>
-
+            {props.currentUser ? <Button as={ Link } to="/exploreProjects" className="ui green item">          <Header as="h3" inverted>
+Click here to start helping students!</Header></Button> : ""
+}
           </Grid.Column>
         </Grid.Row>
       </Grid>
