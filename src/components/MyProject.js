@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { fetchProjects } from "../store/actions/projects";
+import { fetchUsers } from "../store/actions/users";
 import {
   Button,
   Card,
@@ -20,16 +21,21 @@ class MyProject extends Component {
   state = { percent: 0 };
 
   connectToStripe = e => {
-    console.log(this.props.history);
+    // console.log(this.props.history);
     window.open(
       `https://connect.stripe.com/express/oauth/authorize?redirect_uri=localhost:3000/myProfile&client_id=ca_GHuiRPzrsA38adHU0qaRWViSQtTd0xxK&state=foovbhjgjhg`
     );
   };
 
+  componentDidMount = () => {
+    this.props.fetchUsers();
+  }
 
   render() {
-    // console.log(this.props.currentUser);
-    // console.log(this.props.projects)
+    console.log(this.props.currentUser);
+    console.log(this.props.projects)
+    console.log('users', this.props.users)
+
     const userProj = this.props.projects.filter(
       proj => proj.userId === this.props.currentUser.id
     );
@@ -49,14 +55,14 @@ class MyProject extends Component {
       // console.log(total);
       // console.log(projBackers);
       /* <iframe width="560" height="315" src="https://www.youtube.com/embed/lZJjygOli78" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> */
-      console.log(userProject.video_url)
+      // console.log(userProject.video_url)
       const vidSplit1 = userProject.video_url.split("=")
-      console.log(vidSplit1)
+      // console.log(vidSplit1)
       const vidSplit2 = vidSplit1[1].split("&")
-      console.log(vidSplit2)
-      console.log(userProject.description)
-      console.log(userProject.goal)
-      console.log(userProject.current_goal)
+      // console.log(vidSplit2)
+      // console.log(userProject.description)
+      // console.log(userProject.goal)
+      // console.log(userProject.current_goal)
       return (
         <Container className="ui main">
 
@@ -79,7 +85,7 @@ class MyProject extends Component {
                       <Grid columns="equal" verticalAlign='middle' >
                         <Grid.Row>
                           <Grid.Column>
-                            <iframe width="255" height="160" src={"https://www.youtube.com/embed/" + vidSplit2[0]} frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <iframe width="255" height="160" src={"https://www.youtube.com/embed/" + vidSplit2[0]} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
 
                           </Grid.Column>
                           <Grid.Column>
@@ -117,7 +123,7 @@ class MyProject extends Component {
                 </Card>
               </Grid.Column>
               <Grid.Column>
-                <ProjectBackersList project={userProject} />
+                {this.props.users.length > 0 ? <ProjectBackersList project={userProject} /> : "loading users"}
               </Grid.Column>
             </Grid.Row>
           </Grid>
@@ -162,7 +168,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchProjects: () => dispatch(fetchProjects())
+    fetchProjects: () => dispatch(fetchProjects()),
+    fetchUsers: () => dispatch(fetchUsers())
   };
 };
 

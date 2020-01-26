@@ -33,21 +33,25 @@ class LogInForm extends Component {
       <Grid
         textAlign="center"
         style={{ height: "100vh" }}
-        verticalAlign="middle"
+        columns={4}
       >
-        <Grid.Column style={{ maxWidth: 450 }}>
-          <Image src={mainLogo} alt="debtCrusher" size="large" />
-          <Header as="h2" color="blue" textAlign="center">
-            Log-in to your account
-          </Header>
-          <Form
-            size="large"
-            onSubmit={() =>
-              this.props.loginUser(this.state, this.props.history)
-            }
-            onChange={this.handleChange}
-          >
-            <Segment stacked>
+        <Grid.Row>
+          <Grid.Column style={{ maxWidth: 400 }}>
+            <div className="ui main">
+            <Image src={mainLogo} alt="debtCrusher" size="large" />
+            </div>
+            <Segment>
+              <Header as="h3" color="blue" textAlign="center">
+                Log-in to your account
+              </Header>
+            </Segment>
+            <Form
+              size="large"
+              onSubmit={() =>
+                this.props.loginUser(this.state, this.props.history)
+              }
+              onChange={this.handleChange}
+            >
               <Form.Input
                 fluid
                 icon="user"
@@ -69,16 +73,16 @@ class LogInForm extends Component {
                 required
               />
 
-            <Button color="violet" fluid size="large">
+            <Button color="green" fluid size="large">
                 Login
               </Button>
-            </Segment>
-          </Form>
-          <Message>
-            New to us? <a href="/sign_up">Sign Up</a>
-          </Message>
-          <ToastContainer autoClose={2000} />
-        </Grid.Column>
+            </Form>
+            <Message>
+              New to us? <a href="/sign_up">Sign Up</a>
+            </Message>
+            <ToastContainer autoClose={2000} />
+          </Grid.Column>
+        </Grid.Row>
       </Grid>
     );
   }
