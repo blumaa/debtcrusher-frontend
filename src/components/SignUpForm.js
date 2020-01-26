@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Form, Container, Header, Label } from "semantic-ui-react";
+import { Button, Form, Container, Header, Label, Segment } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { signUpUser } from "../store/actions/users";
 import Calendar from 'react-input-calendar'
@@ -59,11 +59,11 @@ class SignUpForm extends Component {
         : "Passwords MUST match";
 
     return (
-      
-      <Container style={{ marginTop: "6.1em" }}>
-        <Header as="h2">Sign Up for debtCrusher!</Header>
-        {/* <Button onClick={this.connectToStripe}>Connect to Stripe</Button> */}
 
+      <Container className="ui main">
+        <Segment>
+        <Header as="h2" >Sign Up for debtCrusher!</Header>
+</Segment>
         <Form
           onSubmit={e => {
             if (this.state.password === this.state.passwordConfirm) {

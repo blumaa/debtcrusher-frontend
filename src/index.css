@@ -17,7 +17,6 @@ body {
 }
 
 .ui.container.welcome {
-  background-color: rgb(247, 247, 247);
   padding: 10px;
   font-weight: bold;
   color: rgb(252, 66, 66)

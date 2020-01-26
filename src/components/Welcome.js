@@ -14,9 +14,11 @@ const Welcome = props => {
           </Header>
 
       </Segment>
+      <Segment raised>
       <Container className="ui container welcome">
         If you are a beta tester or just checking out the site, feel free to sign up and play around with the site. Everything is still in development so none of the payment forms are real. But everything works!
       </Container>
+      </Segment>
       <Segment raised>
         <Header as="h3">
           Here's how debtCrusher works:
