@@ -13,7 +13,7 @@ class StripeLogin extends Component {
   connectToStripe = e => {
     console.log(this.props.history);
     window.open(
-      `https://connect.stripe.com/express/oauth/authorize?redirect_uri=localhost:3000/createProject&client_id=ca_GHuiRPzrsA38adHU0qaRWViSQtTd0xxK&state=foovbhjgjhg`
+      `https://connect.stripe.com/express/oauth/authorize?redirect_uri=https://debt-crusher-frontend.herokuapp.com/createProject&client_id=ca_GHuiRPzrsA38adHU0qaRWViSQtTd0xxK&state=foovbhjgjhg`
     );
   };
 
