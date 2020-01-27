@@ -8,7 +8,7 @@ const ProjectCard = props => {
   // console.log(props.history)
   const { proj, total, history } = props;
   const totalHelpToOtherProjects = total * .1
-  const vidSplit1 = proj.video_url.split("=")
+  const vidSplit1 = userProject.video_url.split("/")
   const vidSplit2 = vidSplit1[1].split("&")
 
   // console.log(proj, history)
@@ -29,7 +29,7 @@ const ProjectCard = props => {
             <Grid columns="equal" verticalAlign='middle' >
               <Grid.Row>
                 <Grid.Column>
-                  <iframe width="100%" height="100%" src={"https://www.youtube.com/embed/" + vidSplit2[0]} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                  <iframe width="100%" height="100%" src={"https://www.youtube.com/embed/" + vidSplit1[3]} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
                 </Grid.Column>
               </Grid.Row>
               <Grid.Row>
