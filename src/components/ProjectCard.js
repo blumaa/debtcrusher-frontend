@@ -8,7 +8,7 @@ const ProjectCard = props => {
   // console.log(props.history)
   const { proj, total, history } = props;
   const totalHelpToOtherProjects = total * .1
-  const vidSplit1 = userProject.video_url.split("/")
+  const vidSplit1 = proj.video_url.split("/")
   const vidSplit2 = vidSplit1[1].split("&")
 
   // console.log(proj, history)
