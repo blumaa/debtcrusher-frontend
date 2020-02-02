@@ -34,7 +34,7 @@ const ProjectCard = props => {
               </Grid.Row>
               <Grid.Row>
                 <Grid.Column>
-                  <Card.Description className="card description">Total student loan debt: <Header className="ui red item">${proj.current_goal}</Header></Card.Description>
+                  <Card.Description className="card description">Original student loan debt: <Header className="ui red item">${proj.goal}</Header></Card.Description>
                 </Grid.Column>
               </Grid.Row>
             </Grid>
@@ -52,10 +52,10 @@ const ProjectCard = props => {
 
         <Card.Content extra textAlign="center">
           <Segment>
-            <Card.Description className="card description">I only need ${proj.goal} to reach my goal!</Card.Description>
+            <Card.Description className="card description">I only need ${proj.current_goal} to reach my goal!</Card.Description>
 
           <Progress
-            percent={(total / proj.goal) * 100}
+            percent={(total / proj.current_goal) * 100}
             indicating
           />
         <Icon name="money" />
