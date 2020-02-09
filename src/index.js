@@ -9,7 +9,7 @@ import rootReducer from "./store/reducers/rootReducer";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { createLogger } from "redux-logger";
-import { StripeProvider, Elements } from 'react-stripe-elements'
+import { StripeProvider } from 'react-stripe-elements'
 
 
 const logger = createLogger({ collapsed: true });

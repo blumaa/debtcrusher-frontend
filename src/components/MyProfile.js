@@ -42,7 +42,7 @@ class MyProfile extends Component {
               ) : (
                 "Get some more backers!"
               )}
-              </Segment>
+            </Segment>
             <Header as="h5">
               Through your project you are backing these projects:
             </Header>
@@ -55,6 +55,7 @@ class MyProfile extends Component {
 
   render() {
     // console.log(this.props.currentUser);
+    const avatars = ['debtCrusher1', 'debtCrusher2', 'debtCrusher3']
     return (
       <Container className="ui main">
         <Grid stackable columns="equal">
@@ -72,16 +73,20 @@ class MyProfile extends Component {
                       <Grid.Column>
                         <Card fluid>
                           <Card.Content textAlign="center">
+                            <Image
+                              src={"https://api.adorable.io/avatar/" + avatars[Math.floor(Math.random() * avatars.length)] }
+                              size="small"
+                            />
 
-                        <Image
-                          src={
-                            "https://debt-crusher-backend.herokuapp.com/" +
-                            this.props.currentUser.userImage
-                          }
-                          size="small"
-                        />
-                    </Card.Content>
-                  </Card>
+                          {/*<Image
+                              src={
+                                "https://debt-crusher-backend.herokuapp.com/" +
+                                this.props.currentUser.userImage
+                              }
+                              size="small"
+                            />*/}
+                          </Card.Content>
+                        </Card>
                       </Grid.Column>
                     </Grid.Row>
                     <Grid.Row>

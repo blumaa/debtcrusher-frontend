@@ -13,10 +13,16 @@ class ProfileShow extends Component {
     return (
       <>
         <Image
+          src="https://api.adorable.io/avatar/:debt_crusher"
+          size="small"
+          float="left"
+        />
+
+        {/*<Image
           src={"https://debt-crusher-backend.herokuapp.com/" + user.userImage}
           size="small"
           floated="left"
-        />
+        />*/}
         <Header as="h2">{user.displayName}</Header>
         <p>Bio: {user.bio}</p>
         <p>Birth Date: {user.birthDate}</p>
