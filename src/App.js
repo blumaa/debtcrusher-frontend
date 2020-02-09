@@ -17,6 +17,7 @@ import ProfileShow from "./components/ProfileShow";
 import SignUpForm from "./components/SignUpForm";
 import LogInForm from "./components/LoginForm";
 import Welcome from "./components/Welcome";
+import Chat from "./components/Chat";
 import style from "./index.css";
 import { connect } from "react-redux";
 import { authenticateUser } from "./store/actions/users";
@@ -56,6 +57,7 @@ class App extends Component {
               <Route path="/welcome" component={Welcome} />
               <Route exact path="/sign_up" component={SignUpForm} />
               <Route exact path="/login" component={LogInForm} />
+              <Route exact path="/chat" component={Chat} />
 
               {this.props.currentUser ? (
                 <>

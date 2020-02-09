@@ -69,7 +69,7 @@ const ProjectCard = props => {
 
         <Card.Content extra>
           <div className="ui two buttons">
-            <ProjectDetailsButton proj={proj} total={total} />
+            {/*<ProjectDetailsButton proj={proj} total={total} />*/}
             { proj.funded === true ? <Button className="ui olive item">THIS PROJECT HAS BEEN FUNDED!</Button> : <FundButton project={proj} history={history}/> }
           </div>
         </Card.Content>

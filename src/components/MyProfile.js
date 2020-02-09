@@ -76,6 +76,7 @@ class MyProfile extends Component {
                             <Image
                               src={"https://api.adorable.io/avatar/" + avatars[Math.floor(Math.random() * avatars.length)] }
                               size="small"
+                              circular
                             />
 
                           {/*<Image

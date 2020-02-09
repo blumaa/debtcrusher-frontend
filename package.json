@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.27",
+    "@fortawesome/free-regular-svg-icons": "^5.12.1",
+    "@fortawesome/free-solid-svg-icons": "^5.12.1",
+    "@fortawesome/react-fontawesome": "^0.1.8",
     "@stardust-ui/docs-components": "^0.40.0",
     "moment": "^2.24.0",
     "moment-range": "^4.0.2",
@@ -26,6 +30,7 @@
     "redux-thunk": "^2.3.0",
     "semantic-ui-calendar-react": "^0.15.3",
     "semantic-ui-react": "^0.88.1",
+    "socket.io-client": "^2.3.0",
     "toastify": "^2.0.0"
   },
   "scripts": {

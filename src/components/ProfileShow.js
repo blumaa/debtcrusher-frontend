@@ -10,12 +10,14 @@ class ProfileShow extends Component {
   };
 
   renderUserInfo(user) {
+        const avatars = ['debtCrusher1', 'debtCrusher2', 'debtCrusher3']
+
     return (
       <>
         <Image
-          src="https://api.adorable.io/avatar/:debt_crusher"
+          src={"https://api.adorable.io/avatar/" + avatars[Math.floor(Math.random() * avatars.length)] }
           size="small"
-          float="left"
+          circular
         />
 
         {/*<Image
