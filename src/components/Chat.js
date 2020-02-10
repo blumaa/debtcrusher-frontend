@@ -1,13 +1,7 @@
 import React, { Component } from "react";
 import {
-  Form,
-  Grid,
-  Header,
   Segment,
   TransitionablePortal,
-  Button,
-  Modal,
-  Icon
 } from "semantic-ui-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faComment } from "@fortawesome/free-solid-svg-icons";
@@ -15,11 +9,11 @@ import ChatBox from './ChatBox'
 
 
 const transitions = ["fly up"];
-const options = transitions.map(name => ({
-  key: name,
-  text: name,
-  value: name
-}));
+// const options = transitions.map(name => ({
+//   key: name,
+//   text: name,
+//   value: name
+// }));
 
 export default class Chat extends Component {
   state = { animation: transitions[0], duration: 500, open: false };
@@ -34,9 +28,6 @@ export default class Chat extends Component {
       <>
         <button
           className="chat-help-button"
-          content={open ? "Close Portal" : "Open Portal"}
-          negative={open}
-          positive={!open}
           onClick={this.handleClick}
         >
         <div className="fab-container">
@@ -51,17 +42,19 @@ export default class Chat extends Component {
           <Segment
             style={{
               position: "fixed",
-              bottom: 110,
+              bottom: 60,
               borderRadius: 30,
               borderWidth: 2,
-              borderColor: "#d63a4f",
-              height: 400,
-              right: 10,
+              borderColor: "rgb(244, 85, 195)",
+              backgroundColor: 'rgb(203, 241, 246)',
+              height: 'auto',
+              right: 65,
               zIndex: 1,
-              boxShadow: "0px 5px 20px rgb(110, 110, 110)"
+              boxShadow: "0px 5px 20px rgb(110, 110, 110)",
+              overflow: 'hidden',
+
             }}
           >
-            
             <ChatBox />
           </Segment>
         </TransitionablePortal>

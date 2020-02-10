@@ -6,7 +6,7 @@ import useChat from './_useChat'
 const ChatBox = () => {
   const { messages, sendMessage} = useChat()
   return (
-    <div>
+    <div className="messages">
       <Messages messages={messages}/>
       <MessageBox onSendMessage={message=> {
           console.log(message)

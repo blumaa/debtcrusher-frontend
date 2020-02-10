@@ -1,23 +1,15 @@
 import React, { Component } from "react";
 import {
   Button,
-  Modal,
   Form,
-  Segment,
-  Container,
-  Message,
-  Dropdown
 } from "semantic-ui-react";
 import {
   CardElement,
-  Elements,
   injectStripe,
-  ReactStripeElements
+
 } from "react-stripe-elements";
 import {
   CountryDropdown,
-  RegionDropdown,
-  CountryRegionData
 } from "react-country-region-selector";
 
 const handleBlur = () => {
@@ -26,9 +18,6 @@ const handleBlur = () => {
 const handleChange = change => {
   console.log("[change]", change);
 };
-const handleClick = () => {
-  console.log("[click]");
-};
 const handleFocus = () => {
   console.log("[focus]");
 };
@@ -36,26 +25,26 @@ const handleReady = () => {
   console.log("[ready]");
 };
 
-const createOptions = (fontSize, padding) => {
-  return {
-    style: {
-      base: {
-        fontSize,
-        color: "#424770",
-        letterSpacing: "0.025em",
-        fontFamily: "Source Code Pro, monospace",
-        "::placeholder": {
-          color: "#aab7c4"
-        },
-        padding
-      },
-      invalid: {
-        color: "#9e2146"
-      }
-    }
-  };
-};
-
+// const createOptions = (fontSize, padding) => {
+//   return {
+//     style: {
+//       base: {
+//         fontSize,
+//         color: "#424770",
+//         letterSpacing: "0.025em",
+//         fontFamily: "Source Code Pro, monospace",
+//         "::placeholder": {
+//           color: "#aab7c4"
+//         },
+//         padding
+//       },
+//       invalid: {
+//         color: "#9e2146"
+//       }
+//     }
+//   };
+// };
+//
 class _CardForm extends Component {
   state = {
     open: false,

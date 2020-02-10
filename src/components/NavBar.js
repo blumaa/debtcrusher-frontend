@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import { clearCurrentUser } from "../store/actions/users";
 import mainLogo from "../images/debtCrusherPS.png";
-import { Container, Image, Menu, Icon, Button } from "semantic-ui-react";
+import { Image, Menu, Icon } from "semantic-ui-react";
 import Chat from "./Chat";
 
 
@@ -13,7 +13,7 @@ const NavBar = props => {
   // console.log('navbar current user', props.currentUser)
   return (
     <>
-      <Menu stackable fixed="top" inverted>
+      <Menu fixed="top" inverted>
         {props.currentUser ? (
           <>
             <Menu.Item

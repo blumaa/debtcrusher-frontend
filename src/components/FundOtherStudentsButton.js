@@ -11,7 +11,6 @@ import {
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { createSecondaryBacker } from "../store/actions/secondaryBacker";
-import { Elements, injectStripe } from "react-stripe-elements";
 
 class FundOtherStudentsButton extends Component {
   state = {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { CardElement, Elements, injectStripe, ReactStripeElements } from 'react-stripe-elements'
-import { Button, Modal, Form } from "semantic-ui-react";
+import { CardElement, Elements, injectStripe } from 'react-stripe-elements'
+import { Button, Form } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { postProjectBacker } from "../store/actions/projectBackers";
 
@@ -23,9 +23,9 @@ const handleBlur = () => {
 const handleChange = (change) => {
   console.log('[change]', change);
 };
-const handleClick = () => {
-  console.log('[click]');
-};
+// const handleClick = () => {
+//   console.log('[click]');
+// };
 const handleFocus = () => {
   console.log('[focus]');
 };

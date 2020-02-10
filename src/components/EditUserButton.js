@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
-import {Button, Header, Image, Modal, Form, Icon} from 'semantic-ui-react'
+import {Button, Modal, Form, Icon} from 'semantic-ui-react'
 import { editUser } from '../store/actions/users'
 import { connect } from 'react-redux'
 import DatePicker from 'react-datepicker';
-import moment from 'moment';
+// import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
 
 
@@ -40,7 +40,7 @@ class EditUserButton extends Component {
       [name]: e.target.value
     })
   }
-  
+
   handleBirthDateChange = date => {
     this.setState({
       birthDate: date

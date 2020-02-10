@@ -1,12 +1,9 @@
 import React, { Component } from "react";
-import { Button, Modal, Form } from "semantic-ui-react";
+import { Button, Modal } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { postProjectBacker } from "../store/actions/projectBackers";
 import {
-  CardElement,
   Elements,
-  injectStripe,
-  ReactStripeElements
 } from "react-stripe-elements";
 import CardForm from "./CardForm";
 

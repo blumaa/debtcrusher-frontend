@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import { Button, Form, Container, Header, Label, Segment } from "semantic-ui-react";
+import { Button, Form, Container, Header, Segment } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { signUpUser } from "../store/actions/users";
-import Calendar from 'react-input-calendar'
+// import Calendar from 'react-input-calendar'
 import DatePicker from 'react-datepicker';
-import moment from 'moment';
+// import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";

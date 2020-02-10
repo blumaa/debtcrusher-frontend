@@ -164,7 +164,7 @@ export const authenticateUser = () => {
       const resp = await fetch("https://debt-crusher-backend.herokuapp.com/api/users/authenticateUser", reqObj);
       // console.log(resp)
       const data = await resp.json();
-      console.log(data)
+      // console.log(data)
       dispatch(authUser(data.user));
     } catch (error) {
       console.error("Error authenticating user:", error);

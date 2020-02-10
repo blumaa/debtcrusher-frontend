@@ -6,7 +6,6 @@ import { fetchUsers } from "../store/actions/users";
 import {
   Button,
   Card,
-  Image,
   Icon,
   Grid,
   Header,
@@ -58,7 +57,7 @@ class MyProject extends Component {
       // console.log(userProject.video_url)
       const vidSplit1 = userProject.video_url.split("/")
       console.log(vidSplit1)
-      const vidSplit2 = vidSplit1[1].split("&")
+      // const vidSplit2 = vidSplit1[1].split("&")
       // console.log(vidSplit2)
       // console.log(userProject.description)
       // console.log(userProject.goal)
@@ -85,7 +84,7 @@ class MyProject extends Component {
                       <Grid columns="equal" verticalAlign='middle' >
                         <Grid.Row>
                           <Grid.Column>
-                            <iframe width="255" height="160" src={"https://www.youtube.com/embed/" + vidSplit1[3]} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                            <iframe title={userProj.name}width="255" height="160" src={"https://www.youtube.com/embed/" + vidSplit1[3]} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
 
                           </Grid.Column>
                           <Grid.Column>

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Grid, Header, Container, Segment, Card } from "semantic-ui-react";
+import { Grid, Header, Container, Card } from "semantic-ui-react";
 import ProjectCard from "./ProjectCard";
 import { fetchProjects } from "../store/actions/projects";
 

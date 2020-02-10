@@ -1,10 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { Header, Container, Segment, List, Button, Card, Grid } from "semantic-ui-react";
+import { Header, Container, Segment, List, Button, Grid } from "semantic-ui-react";
 
 const Welcome = props => {
-  console.log(props.currentUser)
+  // console.log(props.currentUser)
   return (
     <Container className="ui main">
       <Segment raised>

@@ -1,6 +1,6 @@
 import React from "react";
 import Particles from "react-particles-js";
-import dollar from '../images/dollar.svg'
+// import dollar from '../images/dollar.svg'
 
 export default () => (
   <div

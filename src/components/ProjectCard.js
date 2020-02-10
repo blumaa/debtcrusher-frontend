@@ -1,15 +1,15 @@
 import React from "react";
-import { Card, Icon, Image, Grid, Progress, Button, Segment, Divider, Header } from "semantic-ui-react";
-import { Link, NavLink } from "react-router-dom";
+import { Card, Icon, Grid, Progress, Button, Segment, Divider, Header } from "semantic-ui-react";
+import { Link } from "react-router-dom";
 import FundButton from "./FundButton";
-import ProjectDetailsButton from "./ProjectDetailsButton";
+// import ProjectDetailsButton from "./ProjectDetailsButton";
 
 const ProjectCard = props => {
   // console.log(props.history)
   const { proj, total, history } = props;
   const totalHelpToOtherProjects = total * .1
   const vidSplit1 = proj.video_url.split("/")
-  const vidSplit2 = vidSplit1[1].split("&")
+  // const vidSplit2 = vidSplit1[1].split("&")
 
   // console.log(proj, history)
   console.log(proj)
@@ -29,7 +29,7 @@ const ProjectCard = props => {
             <Grid columns="equal" verticalAlign='middle' >
               <Grid.Row>
                 <Grid.Column>
-                  <iframe width="100%" height="100%" src={"https://www.youtube.com/embed/" + vidSplit1[3]} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                  <iframe width="100%" title={proj.name} height="100%" src={"https://www.youtube.com/embed/" + vidSplit1[3]} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
                 </Grid.Column>
               </Grid.Row>
               <Grid.Row>

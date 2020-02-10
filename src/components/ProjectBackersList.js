@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Card, Header, Container, Grid } from "semantic-ui-react";
+import { Card, Header } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 

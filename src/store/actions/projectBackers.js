@@ -1,6 +1,6 @@
 import { updateProjectAmount } from "./projects";
 import { donationPoolUpdate } from "./users";
-import { chargeUser } from "./users";
+// import { chargeUser } from "./users";
 
 export const GET_BACKERS = "GET_BACKERS";
 
@@ -122,7 +122,7 @@ export const postProjectBacker = (backerId, projectId, amount, userId, stripeId,
       const project = await res.json();
       // console.log("look at this project", project);
       return dispatch(updateProjectAmount(project));
-      history.push('/stripeCheckout')
+      // history.push('/stripeCheckout')
     } catch (error) {
       console.error("Error fetching user:", error);
     }

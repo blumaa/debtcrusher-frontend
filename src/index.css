@@ -112,3 +112,7 @@ body {
   font-size: 20px;
   color: #ffffff
 }
+
+.messages{
+  width: 300px
+}
