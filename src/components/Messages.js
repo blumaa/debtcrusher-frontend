@@ -13,8 +13,6 @@ export default function Messages({ messages }) {
           style={{
             backgroundColor: "#fff",
             padding: 4,
-            borderBottomWidth: 3,
-            borderColor: "#7219d2",
             borderRadius: 5,
             margin: 3,
             boxShadow: "0px 2px 10px rgb(110, 110, 110)"
