@@ -3,23 +3,21 @@ import { Button, Form, Container, Header, Segment } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { signUpUser } from "../store/actions/users";
 // import Calendar from 'react-input-calendar'
-import DatePicker from 'react-datepicker';
+import DatePicker from "react-datepicker";
 // import moment from 'moment';
-import 'react-datepicker/dist/react-datepicker.css';
+import "react-datepicker/dist/react-datepicker.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-
 class SignUpForm extends Component {
-
-    state = {
-      username: "",
-      displayName: "",
-      birthDate: new Date(),
-      bio: "",
-      password: "",
-      passwordConfirm: ""
-    };
+  state = {
+    username: "",
+    displayName: "",
+    birthDate: new Date(),
+    bio: "",
+    password: "",
+    passwordConfirm: ""
+  };
 
   handleChange = e => {
     const name = e.target.name;
@@ -51,7 +49,7 @@ class SignUpForm extends Component {
   };
 
   render() {
-    console.log(this.matchPasswords)
+    console.log(this.matchPasswords);
 
     const passwordsMatch =
       this.state.password === this.state.passwordConfirm
@@ -59,27 +57,28 @@ class SignUpForm extends Component {
         : "Passwords MUST match";
 
     return (
-
       <Container className="ui main">
         <Segment>
-        <Header as="h2" >Sign Up for debtCrusher!</Header>
-</Segment>
+          <Header as="h2">Sign Up for debtCrusher!</Header>
+        </Segment>
         <Form
           onSubmit={e => {
             if (this.state.password === this.state.passwordConfirm) {
-            this.props.signUpUser(e, this.state, this.props.history)
-          } else {
-            toast.error("Error: passwords don't match !", {
-              position: toast.POSITION.TOP_LEFT
-            });
-            console.log('error: passwords must be the same')
-          }
+              this.props.signUpUser(e, this.state, this.props.history);
+            } else {
+              toast.error("Error: passwords don't match !", {
+                position: toast.POSITION.TOP_LEFT
+              });
+              console.log("error: passwords must be the same");
             }
-          }
+          }}
           onChange={this.handleChange}
         >
           <Form.Input
-            label="Email"
+            fluid
+            icon="mail"
+            iconPosition="left"
+            placeholder="Email"
             type="email"
             name="username"
             id="username-field"
@@ -87,7 +86,10 @@ class SignUpForm extends Component {
             required
           />
           <Form.Input
-            label="Display Name"
+            fluid
+            icon="user"
+            iconPosition="left"
+            placeholder="Display Name"
             type="text"
             name="displayName"
             value={this.state.displayName}
@@ -96,19 +98,19 @@ class SignUpForm extends Component {
           />
           <Form.Field required>
             <label>Birth Date</label>
-              <DatePicker
-                dateFormat="yyyy-MM-dd"
-                selected={this.state.birthDate}
-                showYearDropdown
-                dropdownMode="select"
-                isClearable
-                onChange={this.handleBirthDateChange}
-                placeholderText="Click to select a date"
-
-              />
+            <DatePicker
+              placeholder='Birth Date'
+              dateFormat="yyyy-MM-dd"
+              selected={this.state.birthDate}
+              showYearDropdown
+              dropdownMode="select"
+              isClearable
+              onChange={this.handleBirthDateChange}
+              placeholderText="Click to select a date"
+            />
           </Form.Field>
           <Form.Input
-            label="User Image"
+            label="Profile Picture"
             name="userImage"
             id="user-image"
             type="file"
@@ -116,7 +118,8 @@ class SignUpForm extends Component {
           />
 
           <Form.TextArea
-            label="Bio"
+            fluid
+            placeholder="Write a short bio for yourself"
             name="bio"
             id="bio-field"
             value={this.state.bio}
@@ -138,8 +141,14 @@ class SignUpForm extends Component {
             value={this.state.passwordConfirm}
             required
           />
-        {this.matchPasswords ? <Button type="submit">Submit</Button> : <Button type="submit" disabled>Submit</Button> }
-        <ToastContainer />
+          {this.matchPasswords ? (
+            <Button type="submit" inverted secondary>Submit</Button>
+          ) : (
+            <Button type="submit" disabled>
+              Submit
+            </Button>
+          )}
+          <ToastContainer />
         </Form>
       </Container>
     );

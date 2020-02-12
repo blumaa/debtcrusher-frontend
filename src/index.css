@@ -8,6 +8,11 @@ body {
 
 }
 
+.ui.image{
+  align-self: center;
+  width: 100%
+}
+
 .ui.card {
   background-color: rgb(247, 247, 247)
 }

@@ -31,15 +31,13 @@ class LogInForm extends Component {
   render() {
     return (
       <Grid
-        textAlign="center"
-        style={{ height: "100vh" }}
-        columns={4}
+        textAlign='center'
+        style={{marginTop: '40px'}}
+
       >
         <Grid.Row>
-          <Grid.Column style={{ maxWidth: 400 }}>
-            <div className="ui main">
-            <Image src={mainLogo} alt="debtCrusher" size="large" />
-            </div>
+          <Grid.Column style={{ width:'50%', textAlign: 'center'}}>
+            <Image src={mainLogo} alt="debtCrusher"/>
             <Segment>
               <Header as="h3" color="blue" textAlign="center">
                 Log-in to your account
