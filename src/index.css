@@ -27,6 +27,10 @@ body {
   color: rgb(252, 66, 66)
 }
 
+.ui.container.test-login {
+  padding: 10px;
+}
+
 .ui.main {
   padding-top: 80px;
 }
