@@ -2,9 +2,7 @@ import React, { Component } from "react";
 import { Button, Modal } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { postProjectBacker } from "../store/actions/projectBackers";
-import {
-  Elements,
-} from "react-stripe-elements";
+import { Elements } from "react-stripe-elements";
 import CardForm from "./CardForm";
 
 class FundButton extends Component {
@@ -16,10 +14,9 @@ class FundButton extends Component {
   show = dimmer => () => this.setState({ dimmer, open: true });
   close = () => this.setState({ open: false });
 
-  handleSubmit = (amount) => {
+  handleSubmit = amount => {
     console.log(this.props.history);
     console.log(amount);
-
 
     this.props.backProject(
       this.props.user.currentUser.id,
@@ -55,17 +52,17 @@ class FundButton extends Component {
         </Button>
 
         <Modal dimmer={dimmer} open={open} onClose={this.close}>
-          <Modal.Header>Help this student!</Modal.Header>
-          <Modal.Content></Modal.Content>
           <Modal.Content>
-            <Elements>
-              <CardForm
-                project={this.props.project}
-                handleSubmit={this.handleSubmit}
-                user={this.props.user}
-                history={this.props.history}
-              />
-            </Elements>
+
+              <Elements>
+                <CardForm
+                  project={this.props.project}
+                  handleSubmit={this.handleSubmit}
+                  user={this.props.user}
+                  history={this.props.history}
+                />
+              </Elements>
+    
           </Modal.Content>
         </Modal>
       </>

@@ -31,6 +31,10 @@ body {
   padding: 10px;
 }
 
+.StripeElement {
+  padding: 10px;
+}
+
 .ui.main {
   padding-top: 80px;
 }

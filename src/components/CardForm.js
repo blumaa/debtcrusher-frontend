@@ -2,15 +2,13 @@ import React, { Component } from "react";
 import {
   Button,
   Form,
+  Grid,
+  Segment,
+  Header,
+  Container
 } from "semantic-ui-react";
-import {
-  CardElement,
-  injectStripe,
-
-} from "react-stripe-elements";
-import {
-  CountryDropdown,
-} from "react-country-region-selector";
+import { CardElement, injectStripe } from "react-stripe-elements";
+import { CountryDropdown } from "react-country-region-selector";
 
 const handleBlur = () => {
   console.log("[blur]");
@@ -25,26 +23,6 @@ const handleReady = () => {
   console.log("[ready]");
 };
 
-// const createOptions = (fontSize, padding) => {
-//   return {
-//     style: {
-//       base: {
-//         fontSize,
-//         color: "#424770",
-//         letterSpacing: "0.025em",
-//         fontFamily: "Source Code Pro, monospace",
-//         "::placeholder": {
-//           color: "#aab7c4"
-//         },
-//         padding
-//       },
-//       invalid: {
-//         color: "#9e2146"
-//       }
-//     }
-//   };
-// };
-//
 class _CardForm extends Component {
   state = {
     open: false,
@@ -81,8 +59,8 @@ class _CardForm extends Component {
       name: this.state.firstName,
       phone: this.state.phoneNumber
     };
-    console.log(billDetails);
-    console.log(cardElement);
+    // console.log(billDetails);
+    // console.log(cardElement);
 
     this.props.stripe
       .createPaymentMethod({
@@ -93,17 +71,20 @@ class _CardForm extends Component {
       .then(({ paymentMethod, error }) => {
         console.log("Received Stripe PaymentMethod:", paymentMethod);
         console.log("Received Stripe error:", error);
-        fetch("https://debt-crusher-backend.herokuapp.com/api/stripe/checkout", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            amount: this.state.amount,
-            stripeId: this.props.project.stripe_user_id,
-            paymentMethod
-          })
-        })
+        fetch(
+          "https://debt-crusher-backend.herokuapp.com/api/stripe/checkout",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              amount: this.state.amount,
+              stripeId: this.props.project.stripe_user_id,
+              paymentMethod
+            })
+          }
+        )
           .then(res => res.json())
           .then(data => {
             console.log(data);
@@ -123,9 +104,9 @@ class _CardForm extends Component {
   };
 
   selectCountry = val => {
-    console.log(val);
+    // console.log(val);
     this.setState({ country: val });
-    console.log(this.state.country)
+    // console.log(this.state.country);
   };
 
   render() {
@@ -153,149 +134,189 @@ class _CardForm extends Component {
       };
     };
 
+    const user = this.props.project.User;
+
     return (
       <Form onSubmit={this.handleSubmit}>
         <Form.Field>
-          <label>
-            When you donate money to{" "}
-            {this.props.project.User ? this.props.project.User.displayName : ""}
-            student's loan, 90% of that money will be committed to
-          </label>
-          <p>
-            How much would you like to give
-            {this.props.User ? this.props.project.User.displayName : ""} per
-            month?
-          </p>
-          Amount:
-          <div>
-            <input
-              type="radio"
-              name="amount"
-              value="10"
-              onChange={this.handleChange}
-              required
-            />
-            <label>$10</label>
-          </div>
-          <div>
-            <input
-              type="radio"
-              name="amount"
-              value="20"
-              onChange={this.handleChange}
-              required
-            />
-            <label>$20</label>
-          </div>
-          <div>
-            <input
-              type="radio"
-              name="amount"
-              value="30"
-              onChange={this.handleChange}
-              required
-            />
-            <label>$30</label>
-          </div>
+          <Segment inverted style={{ backgroundColor: "teal" }}>
+            <label>
+              When you donate money to {user ? `${user.displayName}'s` : ""}{" "}
+              student's loan, 90% of the money goes to{" "}
+              {user ? `${user.displayName}'s` : ""} loan, then{" "}
+              {user ? user.displayName : ""} decides to which student to give
+              the other 10%. In this way, your money is helping lots of students
+              on debtCrusher!
+            </label>
+          </Segment>
+          <Segment>
+            <Header>
+              How much would you like to give {user ? user.displayName : ""}?
+            </Header>
+            <Form.Group inline required>
+              <div style={{ padding: "20px" }}>
+                <input
+                  type="radio"
+                  name="amount"
+                  value="10"
+                  onChange={this.handleChange}
+                  required
+                />
+                <label style={{ marginLeft: "10px" }}>$10</label>
+              </div>
+              <div style={{ padding: "20px" }}>
+                <input
+                  type="radio"
+                  name="amount"
+                  value="20"
+                  onChange={this.handleChange}
+                  required
+                />
+                <label style={{ marginLeft: "10px" }}>$20</label>
+              </div>
+              <div style={{ padding: "20px" }}>
+                <input
+                  type="radio"
+                  name="amount"
+                  value="30"
+                  onChange={this.handleChange}
+                  required
+                />
+                <label style={{ marginLeft: "10px" }}>$30</label>
+              </div>
+            </Form.Group>
+          </Segment>
         </Form.Field>
-        <Form.Field>
-          <label>Billing Details</label>
-          <Form.Group>
-            <Form.Input
-              label="First Name"
-              type="text"
-              name="firstName"
-              value={this.state.firstName}
-              onChange={this.handleChange}
-              width={5}
-              required
-            />
-            <Form.Input
-              label="Last Name"
-              type="text"
-              name="lastName"
-              width={5}
-              value={this.state.lastName}
-              onChange={this.handleChange}
-              required
-            />
-          </Form.Group>
-          <Form.Group>
-            <Form.Input
-              label="Email"
-              type="text"
-              name="email"
-              width={5}
-              value={this.state.email}
-              onChange={this.handleChange}
-              required
-            />
-            <Form.Input
-              label="Phone Number"
-              type="text"
-              name="phoneNumber"
-              width={5}
-              value={this.state.phoneNumber}
-              onChange={this.handleChange}
-              required
-            />
-          </Form.Group>
-          <Form.Group>
-            <Form.Input
-              label="Address"
-              type="text"
-              name="address"
-              width={8}
-              value={this.state.address}
-              onChange={this.handleChange}
-              required
-            />
-          </Form.Group>
-          <Form.Group>
-            <Form.Input
-              label="City"
-              type="text"
-              name="city"
-              value={this.state.city}
-              onChange={this.handleChange}
-              required
-            />
-            <Form.Input
-              label="State"
-              type="text"
-              name="state"
-              value={this.state.state}
-              onChange={this.handleChange}
-              required
-            />
-            <Form.Input
-              label="Zip Code"
-              type="text"
-              name="zipCode"
-              value={this.state.zipCode}
-              onChange={this.handleChange}
-              required
-            />
-            <CountryDropdown
-              valueType="short"
-              value={this.state.country}
-              onChange={val => this.selectCountry(val)}
-            />
-          </Form.Group>
-        </Form.Field>
-        <Form.Field>
-          <label>
-            Card details
-            <CardElement
+          <Segment>
+            <Form.Field>
+              <Header>Billing Details</Header>
+              <Form.Group>
+                <Form.Input
+                  placeholder="First Name"
+                  type="text"
+                  name="firstName"
+                  value={this.state.firstName}
+                  onChange={this.handleChange}
+                  width={8}
+                  required
+                />
+                <Form.Input
+                  placeholder="Last Name"
+                  type="text"
+                  name="lastName"
+                  width={8}
+                  value={this.state.lastName}
+                  onChange={this.handleChange}
+                  required
+                />
+              </Form.Group>
+              <Form.Group>
+                <Form.Input
+                  icon="mail"
+                  iconPosition="left"
+                  placeholder="Email Address"
+                  type="email"
+                  name="email"
+                  width={8}
+                  value={this.state.email}
+                  onChange={this.handleChange}
+                  required
+                />
+                <Form.Input
+                  icon="phone"
+                  iconPosition="left"
+                  placeholder="Phone Number"
+                  type="text"
+                  name="phoneNumber"
+                  width={8}
+                  value={this.state.phoneNumber}
+                  onChange={this.handleChange}
+                  required
+                />
+              </Form.Group>
+              <Form.Group>
+                <Form.Input
+                  placeholder="Address"
+                  type="text"
+                  name="address"
+                  width={8}
+                  value={this.state.address}
+                  onChange={this.handleChange}
+                  required
+                />
+              </Form.Group>
+              <Form.Group>
+                <Form.Input
+                  placeholder="City"
+                  type="text"
+                  name="city"
+                  value={this.state.city}
+                  onChange={this.handleChange}
+                  required
+                />
+                <Form.Input
+                  placeholder="State"
+                  type="text"
+                  name="state"
+                  value={this.state.state}
+                  onChange={this.handleChange}
+                  required
+                />
+
+                <Form.Input
+                  placeholder="Zip Code"
+                  type="text"
+                  name="zipCode"
+                  value={this.state.zipCode}
+                  onChange={this.handleChange}
+                  required
+                />
+              <CountryDropdown
+                  valueType="short"
+                  value={this.state.country}
+                  onChange={val => this.selectCountry(val)}
+                  style={{width: "150px", marginLeft: '10px'}}
+                />
+              </Form.Group>
+            </Form.Field>
+          </Segment>
+          <Segment>
+            <Container className="ui container test-login">
+              For testing purposes, you can enter the credit card number{" "}
+              <span style={{ color: "#ff00b8" }}>4242424242424242</span>, the
+              expiration date <span style={{ color: "#ff00b8" }}>04/24</span> and
+              the CVC <span style={{ color: "#ff00b8" }}>42424</span>
+            </Container>
+          </Segment>
+          <Segment>
+            <Form.Field>
+              <Header>Payment Information</Header>
+              <CardElement
+                className="StripeElement"
+                style={{
+                  base: {
+                    iconColor: "#666EE8",
+                    color: "#494949",
+                    lineHeight: "40px",
+                    fontSize: "16px",
+                    fontSmoothing: "antialiased",
+                    ":-webkit-autofill": {
+                      color: "#fce883"
+                    },
+
+                    "::placeholder": {
+                      color: "#CFD7E0"
+                    }
+                  }
+                }}
               onBlur={handleBlur}
               onChange={handleChange}
               onFocus={handleFocus}
               onReady={handleReady}
-              {...createOptions(this.props.fontSize)}
-            />
-          </label>
+              />
+            </Form.Field>
+          </Segment>
           <Button>Pay</Button>
-        </Form.Field>
       </Form>
     );
   }
