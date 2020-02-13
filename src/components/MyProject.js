@@ -55,8 +55,23 @@ class MyProject extends Component {
       // console.log(projBackers);
       /* <iframe width="560" height="315" src="https://www.youtube.com/embed/lZJjygOli78" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> */
       // console.log(userProject.video_url)
-      const vidSplit1 = userProject.video_url.split("/")
-      console.log(vidSplit1)
+      let vidSplit
+
+  if (userProject.video_url.includes('=')) {
+    console.log('true')
+   console.log(userProject.video_url.split('='))
+   vidSplit = userProject.video_url.split('=')[1]
+   console.log(vidSplit)
+ } else {
+   vidSplit = userProject.video_url.split("/")[3]
+
+ }
+
+
+      // const vidSplit1 = userProject.video_url.split("/")
+      // console.log(vidSplit1)
+
+
       // const vidSplit2 = vidSplit1[1].split("&")
       // console.log(vidSplit2)
       // console.log(userProject.description)
@@ -84,7 +99,7 @@ class MyProject extends Component {
                       <Grid columns="equal" verticalAlign='middle' >
                         <Grid.Row>
                           <Grid.Column>
-                            <iframe title={userProj.name}width="255" height="160" src={"https://www.youtube.com/embed/" + vidSplit1[3]} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                            <iframe title={userProj.name}width="255" height="160" src={"https://www.youtube.com/embed/" + vidSplit} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
 
                           </Grid.Column>
                           <Grid.Column>
