@@ -8,7 +8,18 @@ const ProjectCard = props => {
   // console.log(props.history)
   const { proj, total, history } = props;
   const totalHelpToOtherProjects = total * .1
-  const vidSplit1 = proj.video_url.split("/")
+  let vidSplit
+
+  console.log(proj.video_url)
+  if (proj.video_url.includes('=')) {
+    console.log('true')
+   console.log(proj.video_url.split('='))
+   vidSplit = proj.video_url.split('=')[1]
+   console.log(vidSplit)
+ } else {
+   vidSplit = proj.video_url.split("/")[3]
+
+ }
   // const vidSplit2 = vidSplit1[1].split("&")
 
   // console.log(proj, history)
@@ -29,7 +40,7 @@ const ProjectCard = props => {
             <Grid columns="equal" verticalAlign='middle' >
               <Grid.Row>
                 <Grid.Column>
-                  <iframe width="100%" title={proj.name} height="100%" src={"https://www.youtube.com/embed/" + vidSplit1[3]} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                  <iframe width="100%" title={proj.name} height="100%" src={"https://www.youtube.com/embed/" + vidSplit} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
                 </Grid.Column>
               </Grid.Row>
               <Grid.Row>
