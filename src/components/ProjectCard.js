@@ -15,7 +15,7 @@ const ProjectCard = props => {
   console.log(proj)
   return (
     <Grid.Column>
-      <Card fluid>
+      <Card fluid style={{marginBottom: 10}}>
         <Card.Content className="ui content" textAlign="center">
           <div className="card title">{proj.name}</div>
 
@@ -67,7 +67,7 @@ const ProjectCard = props => {
           People helping this loan are also giving ${totalHelpToOtherProjects} to other student's loans.
         </Card.Content>
 
-        <Card.Content extra>
+        <Card.Content extra >
           <div className="ui two buttons">
             {/*<ProjectDetailsButton proj={proj} total={total} />*/}
             { proj.funded === true ? <Button className="ui olive item">THIS PROJECT HAS BEEN FUNDED!</Button> : <FundButton project={proj} history={history}/> }

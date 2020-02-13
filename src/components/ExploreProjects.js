@@ -49,8 +49,8 @@ class ExploreProjects extends Component {
             </Grid.Column>
           </Grid.Row>
         </Grid>
-        <Grid stackable columns={3}>
-          <Grid.Row>
+        <Grid stackable columns={3} >
+          <Grid.Row >
             {renderedProjects.length > 0
               ? renderedProjects
               : "There aren't any projects to fund yet"}
