@@ -34,7 +34,7 @@ class LogInForm extends Component {
         <Grid style={{ marginTop: "40px" }}>
           <Grid.Row stretched>
             <Grid.Column>
-              <Image src={mainLogo} alt="debtCrusher" size="large" />
+              <Image src={mainLogo} alt="debtCrusher" size="large" style={{border:'2px solid grey', borderRadius: '60px', boxShadow: '0 0 0.75rem grey'}} />
             </Grid.Column>
           </Grid.Row>
         </Grid>
