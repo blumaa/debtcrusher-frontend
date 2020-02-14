@@ -8,14 +8,20 @@ import {
   List,
   Button,
   Grid,
-  Icon
+  Icon,
+  Image
 } from "semantic-ui-react";
+import mainLogo from "../images/debtCrusherPS.png";
 
 const Welcome = props => {
   // console.log(props.currentUser)
   return (
     <>
+
       <Container className="ui main">
+        <div className="wrapper">
+          <Image src={mainLogo} alt="debtCrusher" size="medium" id='main-logo'  />
+        </div>
         <Segment raised>
           <Header as="h1">
             Welcome to debtCrusher,{" "}
@@ -24,7 +30,7 @@ const Welcome = props => {
         </Segment>
         <Segment raised>
           <Grid verticalAlign="middle">
-            <Grid.Row >
+            <Grid.Row>
               <Grid.Column textAlign="center" width={1}>
                 <Icon name="exclamation circle" size="large"></Icon>
               </Grid.Column>
@@ -36,13 +42,14 @@ const Welcome = props => {
                   everything works.
                 </Container>
                 <Container className="ui container test-login">
-                  If you don't want to sign up, you can login with the{" "}
-                  username: <span style={{color: '#ff00b8'}}>test@gmail.com</span> and the password: <span style={{color: '#ff00b8'}}>test</span>
+                  If you don't want to sign up, you can login with the username:{" "}
+                  <span style={{ color: "#ff00b8" }}>test@gmail.com</span> and
+                  the password: <span style={{ color: "#ff00b8" }}>test</span>
                 </Container>
               </Grid.Column>
             </Grid.Row>
           </Grid>
-          </Segment>
+        </Segment>
         <Segment raised>
           <Header as="h3">Here's how debtCrusher works:</Header>
           <p>

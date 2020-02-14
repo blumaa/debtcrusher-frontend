@@ -30,58 +30,62 @@ class LogInForm extends Component {
 
   render() {
     return (
-      <Grid
-        textAlign='center'
-        style={{marginTop: '40px'}}
+      <>
+        <Grid style={{ marginTop: "40px" }}>
+          <Grid.Row stretched>
+            <Grid.Column>
+              <Image src={mainLogo} alt="debtCrusher" size="large" />
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+        <Grid textAlign="center">
+          <Grid.Row>
+            <Grid.Column style={{ width: "50%", textAlign: "center" }}>
+              <Segment>
+                <Header as="h3" color="blue" textAlign="center">
+                  Log-in to your account
+                </Header>
+              </Segment>
+              <Form
+                size="large"
+                onSubmit={() =>
+                  this.props.loginUser(this.state, this.props.history)
+                }
+                onChange={this.handleChange}
+              >
+                <Form.Input
+                  fluid
+                  icon="user"
+                  iconPosition="left"
+                  placeholder="E-mail address"
+                  type="email"
+                  name="username"
+                  id="email-field"
+                  required
+                />
+                <Form.Input
+                  fluid
+                  icon="lock"
+                  iconPosition="left"
+                  placeholder="Password"
+                  name="password"
+                  type="password"
+                  id="password-field"
+                  required
+                />
 
-      >
-        <Grid.Row>
-          <Grid.Column style={{ width:'50%', textAlign: 'center'}}>
-            <Image src={mainLogo} alt="debtCrusher"/>
-            <Segment>
-              <Header as="h3" color="blue" textAlign="center">
-                Log-in to your account
-              </Header>
-            </Segment>
-            <Form
-              size="large"
-              onSubmit={() =>
-                this.props.loginUser(this.state, this.props.history)
-              }
-              onChange={this.handleChange}
-            >
-              <Form.Input
-                fluid
-                icon="user"
-                iconPosition="left"
-                placeholder="E-mail address"
-                type="email"
-                name="username"
-                id="email-field"
-                required
-              />
-              <Form.Input
-                fluid
-                icon="lock"
-                iconPosition="left"
-                placeholder="Password"
-                name="password"
-                type="password"
-                id="password-field"
-                required
-              />
-
-            <Button color="green" fluid size="large">
-                Login
-              </Button>
-            </Form>
-            <Message>
-              New to us? <a href="/sign_up">Sign Up</a>
-            </Message>
-            <ToastContainer autoClose={2000} />
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
+                <Button color="green" fluid size="large">
+                  Login
+                </Button>
+              </Form>
+              <Message>
+                New to us? <a href="/sign_up">Sign Up</a>
+              </Message>
+              <ToastContainer autoClose={2000} />
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+      </>
     );
   }
 }
