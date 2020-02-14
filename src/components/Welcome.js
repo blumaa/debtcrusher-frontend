@@ -31,20 +31,21 @@ const Welcome = props => {
         <Segment raised>
           <Grid verticalAlign="middle">
             <Grid.Row>
-              <Grid.Column textAlign="center" width={1}>
-                <Icon name="exclamation circle" size="large"></Icon>
-              </Grid.Column>
-              <Grid.Column width={15}>
+              <Grid.Column width={16}>
+
+                <Icon name="exclamation circle" id="warning-icon" size="big" />
                 <Container className="ui container welcome">
+
                   If you are a tester or just checking out the site, feel free
                   to sign up and play around with the site. Everything is still
                   in development so none of the payment forms are real. But
                   everything works.
                 </Container>
                 <Container className="ui container test-login">
-                  If you don't want to sign up, you can login with the username:{" "}
+                  <p>If you don't want to sign up, you can login with the username:{" "}
                   <span style={{ color: "#ff00b8" }}>test@gmail.com</span> and
                   the password: <span style={{ color: "#ff00b8" }}>test</span>
+                </p>
                 </Container>
               </Grid.Column>
             </Grid.Row>
