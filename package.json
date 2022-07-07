@@ -8,7 +8,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.12.1",
     "@fortawesome/react-fontawesome": "^0.1.8",
     "@stardust-ui/docs-components": "^0.40.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "moment-range": "^4.0.2",
     "react": "^16.12.0",
     "react-country-region-selector": "^1.4.7",
